@@ -1,6 +1,5 @@
----
-Directories structure:
 
+Directories structure:
 ```text
 project root
 │
@@ -31,7 +30,4 @@ project root
 ├───public
 ...
 
-```
-
----
 ```
