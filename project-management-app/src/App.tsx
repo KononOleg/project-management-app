@@ -1,13 +1,16 @@
-import { FC } from 'react';
-import { Provider } from 'react-redux';
 import './App.css';
+import './helpers/i18n';
+import { FC, Suspense } from 'react';
+import { Provider } from 'react-redux';
 import store from './store';
 
 const App: FC = () => {
   return (
-    <Provider store={store}>
-      <></>
-    </Provider>
+    <Suspense fallback={<div>...</div>}>
+      <Provider store={store}>
+        <></>
+      </Provider>
+    </Suspense>
   );
 };
 
