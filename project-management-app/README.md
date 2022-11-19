@@ -1,5 +1,5 @@
-
 Directories structure:
+
 ```text
 project root
 │
@@ -19,6 +19,8 @@ project root
 │   ├───pages
 │   │   └───...
 │   ├───routes
+│   │   └───...
+│   ├───service
 │   │   └───...
 │   ├───store
 │   │   └───...
