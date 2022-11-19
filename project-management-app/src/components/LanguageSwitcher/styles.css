@@ -1,0 +1,16 @@
+.language-switcher__wrapper {
+  display: flex;
+  border: 1px solid black;
+  margin-left: 20px;
+}
+
+.language-switcher__link {
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.language-switcher__link_active {
+  background-color: rgb(0, 101, 255);
+  color: white;
+  padding: 5px 10px;
+}
