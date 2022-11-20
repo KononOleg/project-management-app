@@ -5,15 +5,12 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { RouterProvider } from 'react-router-dom';
 import router from './routes/index';
-import Main from './components/Main';
 
 const App: FC = () => {
   return (
     <Suspense fallback={<div>...</div>}>
       <Provider store={store}>
-        <Main>
-          <RouterProvider router={router} />
-        </Main>
+        <RouterProvider router={router} />
       </Provider>
     </Suspense>
   );
