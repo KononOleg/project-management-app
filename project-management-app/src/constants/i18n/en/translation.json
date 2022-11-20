@@ -1,4 +1,18 @@
 {  
   "LOGIN_LINK": "Log in",
-  "SIGNUP_LINK": "Get Trello for free"
+  "SIGNUP_LINK": "Get Trello for free",
+  "AUTHORIZATION":{
+    "TITLE_SIGNUP":"Sign up for your account",
+    "TITLE_SIGNIN":"Log in to Trello",
+    "NAME_ERROR":"Name is required",
+    "LOGIN_ERROR":"Login is required",
+    "PASSWORD_ERROR":"Password is required",
+    "PASSWORD_ERROR_LENGTH":"Minimum of 8 characters",
+    "LINK_SINGUP":"Already have an account? Log In",
+    "LINK_SINGIN":"Sign up for an account",
+    "NAME_PLACEHOLDER":"Enter name",
+    "LOGIN_PLACEHOLDER":"Enter login",
+    "PASSWORD_PLACEHOLDER":"Enter password",
+    "SUBMIT":"Continue"
+  }
 }

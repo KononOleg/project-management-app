@@ -1,0 +1,88 @@
+.authorization__wrapper {
+  display: flex;
+  align-items: center;
+  padding: 50px;
+  flex-direction: column;
+  gap: 40px;
+}
+.authorization__logo {
+  height: 43px;
+  width: 200px;
+}
+
+.authorization__form {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 3px;
+  padding: 25px 40px;
+  box-shadow: rgb(0 0 0 / 10%) 0 0 10px;
+  max-width: 300px;
+  width: 100%;
+}
+.authorization-form__title {
+  text-align: center;
+  color: #5e6c84;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  line-height: 28px;
+  margin-bottom: 25px;
+}
+
+.authorization-input__wrapper {
+  position: relative;
+}
+.authorization__input {
+  font-size: 14px;
+  background-color: #fafbfc;
+  border: 2px solid #dfe1e6;
+  box-sizing: border-box;
+  border-radius: 3px;
+  height: 40px;
+  padding: 0.5em;
+  width: 100%;
+  outline: none;
+  margin-bottom: 30px;
+}
+
+.authorization__input:focus {
+  border: 2px solid #4c9aff;
+}
+
+.authorization__input_error {
+  border: 2px solid red;
+}
+
+.authorization-input__error {
+  position: absolute;
+  top: 45px;
+  color: red;
+}
+
+.authorization__submit {
+  background: #5aac44;
+  color: #fff;
+  padding: 0.8em 1.3em;
+  border-radius: 0.3em;
+  border: 0;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.authorization__submit:disabled {
+  background: #e2e4e6;
+  box-shadow: none;
+  color: hsl(0, 0%, 55%);
+  cursor: default;
+}
+
+.authorization__link {
+  text-decoration: none;
+  color: #0052cc;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.authorization__link:hover {
+  text-decoration: underline;
+}
