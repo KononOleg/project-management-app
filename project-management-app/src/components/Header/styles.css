@@ -1,6 +1,7 @@
 .header__wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 60px;
   margin: 0px auto;
   max-width: 1320px;
@@ -8,18 +9,8 @@
 }
 
 .header__logo {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  color: black;
-  text-decoration: none;
-}
-
-.logo__img {
-  height: 20px;
-  width: 20px;
+  height: 28px;
+  width: 110px;
 }
 
 .logo__title {
