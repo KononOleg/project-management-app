@@ -4,6 +4,7 @@
   height: 60px;
   margin: 0px auto;
   max-width: 1320px;
+  width: 100%;
 }
 
 .header__logo {

@@ -8,7 +8,7 @@ const Header: FC = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="header__wrapper">
+    <header className="header__wrapper">
       <a className="header__logo" href="/">
         <img className="logo__img" src={logo} />
         <h1 className="logo__title">Trello</h1>
@@ -22,7 +22,7 @@ const Header: FC = () => {
           {t('SIGNUP_LINK')}
         </a>
       </div>
-    </div>
+    </header>
   );
 };
 
