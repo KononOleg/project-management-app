@@ -12,7 +12,7 @@ const App: FC = () => {
     <Suspense fallback={<div>...</div>}>
       <Provider store={store}>
         <Header />
-        {/*         <RouterProvider router={router} /> */}
+        <RouterProvider router={router} />
       </Provider>
     </Suspense>
   );
