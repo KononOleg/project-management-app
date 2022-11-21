@@ -18,3 +18,9 @@ export interface SignInRequest {
 export interface SignInResponse {
   token: string;
 }
+
+export type AxiosErrorDataType = {
+  error: string;
+  message: string;
+  statusCode: number;
+};
