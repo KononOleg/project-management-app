@@ -1,9 +1,11 @@
 import './styles.css';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import logo from '../../assets/icon/trello-logo.svg';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { signIn, signUp } from '../../store/thunks/AuthThunks';
 
 interface IFormInputs {
   name: string;
@@ -22,8 +24,18 @@ const Authorization: FC<IProps> = ({ isSignUp }) => {
     handleSubmit,
   } = useForm<IFormInputs>();
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+  const { isSuccess } = useAppSelector((state) => state.AuthReducer);
+  const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<IFormInputs> = (data) => alert(JSON.stringify(data));
+  useEffect(() => {
+    if (isSuccess) navigate('/');
+  }, [isSuccess]);
+
+  const onSubmit: SubmitHandler<IFormInputs> = (data) => {
+    if (isSignUp) dispatch(signUp(data));
+    else dispatch(signIn(data));
+  };
 
   return (
     <div className="authorization__wrapper">
