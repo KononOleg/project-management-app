@@ -1,19 +1,18 @@
 import './App.css';
 import './helpers/i18n';
-import { FC, Suspense } from 'react';
-import { Provider } from 'react-redux';
-import store from './store';
+import { FC, useEffect } from 'react';
+
 import { RouterProvider } from 'react-router-dom';
 import router from './routes/index';
+import { useAppDispatch } from './hooks/redux';
+import { checkIsAuth } from './store/thunks/AuthThunks';
 
 const App: FC = () => {
-  return (
-    <Suspense fallback={<div>...</div>}>
-      <Provider store={store}>
-        <RouterProvider router={router} />
-      </Provider>
-    </Suspense>
-  );
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(checkIsAuth());
+  }, []);
+  return <RouterProvider router={router} />;
 };
 
 export default App;

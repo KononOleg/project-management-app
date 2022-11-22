@@ -42,3 +42,22 @@ export const signUp = createAsyncThunk(
     }
   }
 );
+
+export const checkIsAuth = createAsyncThunk('auth/isAuth', async (_, thunkAPI) => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    try {
+      const tokenData: IToken = jwt_decode(token);
+      const userResponse = await UserService.getUser(tokenData.id);
+      return userResponse.data;
+    } catch (err) {
+      if (axios.isAxiosError(err) && err.response) {
+        const data = err.response.data as AxiosErrorDataType;
+        alert(data.message);
+        return thunkAPI.rejectWithValue(data.message);
+      }
+    }
+  } else {
+    return thunkAPI.rejectWithValue('');
+  }
+});
