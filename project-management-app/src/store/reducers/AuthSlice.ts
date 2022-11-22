@@ -19,7 +19,15 @@ const initialState: AuthState = {
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    signOut(state) {
+      state.isAuth = false;
+      state.user = null;
+      state.isPending = false;
+      state.error = '';
+      localStorage.removeItem('token');
+    },
+  },
   extraReducers: {
     [signIn.pending.type]: (state) => {
       state.isPending = true;

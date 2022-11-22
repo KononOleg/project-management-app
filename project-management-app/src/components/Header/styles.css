@@ -42,3 +42,10 @@
   display: flex;
   align-items: center;
 }
+
+.header__exit {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  margin-left: 10px;
+}

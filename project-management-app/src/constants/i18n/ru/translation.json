@@ -1,19 +1,19 @@
-{  
+{
   "LOGIN_LINK": "Войти",
   "SIGNUP_LINK": "Получить Trello бесплатно",
-  "AUTHORIZATION":{
-    "TITLE_SIGNUP":"Зарегистрировать аккаунт",
-    "TITLE_SIGNIN":"Вход в Trello",
-    "NAME_ERROR":"Имя обязательно",
-    "LOGIN_ERROR":"Логин обязателен",
-    "PASSWORD_ERROR":"Пароль обязателен",
-    "PASSWORD_ERROR_LENGTH":"Минимум 8 символов",
-    "LINK_SINGUP":"Уже есть аккаунт? Войти",
-    "LINK_SINGIN":"Зарегистрировать аккаунт",
-    "NAME_PLACEHOLDER":"Введите имя",
-    "LOGIN_PLACEHOLDER":"Введите логин",
-    "PASSWORD_PLACEHOLDER":"Введите пароль",
-    "SUBMIT":"Продолжить"
-  }
+  "AUTHORIZATION": {
+    "TITLE_SIGNUP": "Зарегистрировать аккаунт",
+    "TITLE_SIGNIN": "Вход в Trello",
+    "NAME_ERROR": "Имя обязательно",
+    "LOGIN_ERROR": "Логин обязателен",
+    "PASSWORD_ERROR": "Пароль обязателен",
+    "PASSWORD_ERROR_LENGTH": "Минимум 8 символов",
+    "LINK_SINGUP": "Уже есть аккаунт? Войти",
+    "LINK_SINGIN": "Зарегистрировать аккаунт",
+    "NAME_PLACEHOLDER": "Введите имя",
+    "LOGIN_PLACEHOLDER": "Введите логин",
+    "PASSWORD_PLACEHOLDER": "Введите пароль",
+    "SUBMIT": "Продолжить"
+  },
+  "EXIT_BUTTON": "Выход"
 }
-  
