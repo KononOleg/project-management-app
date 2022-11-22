@@ -25,12 +25,12 @@ const Authorization: FC<IProps> = ({ isSignUp }) => {
   } = useForm<IFormInputs>();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { isSuccess } = useAppSelector((state) => state.AuthReducer);
+  const { isAuth } = useAppSelector((state) => state.AuthReducer);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isSuccess) navigate('/');
-  }, [isSuccess]);
+    if (isAuth) navigate('/');
+  }, [isAuth]);
 
   const onSubmit: SubmitHandler<IFormInputs> = (data) => {
     if (isSignUp) dispatch(signUp(data));

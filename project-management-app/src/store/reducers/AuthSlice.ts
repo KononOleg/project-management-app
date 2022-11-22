@@ -6,7 +6,6 @@ interface AuthState {
   user: IUser | null;
   isPending: boolean;
   isAuth: boolean;
-  isSuccess: boolean;
   error: string;
 }
 
@@ -14,7 +13,6 @@ const initialState: AuthState = {
   user: null,
   isPending: false,
   isAuth: false,
-  isSuccess: false,
   error: '',
 };
 
@@ -28,7 +26,6 @@ export const authSlice = createSlice({
     },
     [signIn.fulfilled.type]: (state, action: PayloadAction<IUser | null>) => {
       state.isAuth = true;
-      state.isSuccess = true;
       state.isPending = false;
       state.error = '';
       state.user = action.payload;
@@ -44,7 +41,6 @@ export const authSlice = createSlice({
     },
     [signUp.fulfilled.type]: (state, action: PayloadAction<IUser | null>) => {
       state.isAuth = true;
-      state.isSuccess = true;
       state.isPending = false;
       state.error = '';
       state.user = action.payload;
