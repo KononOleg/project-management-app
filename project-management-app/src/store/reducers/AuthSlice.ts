@@ -28,49 +28,49 @@ export const authSlice = createSlice({
       localStorage.removeItem('token');
     },
   },
-  extraReducers: {
-    [signIn.pending.type]: (state) => {
+  extraReducers: (builder) => {
+    builder.addCase(signIn.pending.type, (state) => {
       state.isPending = true;
-    },
-    [signIn.fulfilled.type]: (state, action: PayloadAction<IUser | null>) => {
+    });
+    builder.addCase(signIn.fulfilled.type, (state, action: PayloadAction<IUser>) => {
       state.isAuth = true;
       state.isPending = false;
       state.error = '';
       state.user = action.payload;
-    },
-    [signIn.rejected.type]: (state, action: PayloadAction<string>) => {
+    });
+    builder.addCase(signIn.rejected.type, (state, action: PayloadAction<string>) => {
       state.isAuth = false;
       state.isPending = false;
       state.error = action.payload;
-    },
-    [signUp.pending.type]: (state) => {
+    });
+    builder.addCase(signUp.pending, (state) => {
       state.isAuth = false;
       state.isPending = true;
-    },
-    [signUp.fulfilled.type]: (state, action: PayloadAction<IUser | null>) => {
+    });
+    builder.addCase(signUp.fulfilled.type, (state, action: PayloadAction<IUser>) => {
       state.isAuth = true;
       state.isPending = false;
       state.error = '';
       state.user = action.payload;
-    },
-    [signUp.rejected.type]: (state, action: PayloadAction<string>) => {
+    });
+    builder.addCase(signUp.rejected.type, (state, action: PayloadAction<string>) => {
       state.isAuth = false;
       state.isPending = false;
       state.error = action.payload;
-    },
-    [checkIsAuth.pending.type]: (state) => {
+    });
+    builder.addCase(checkIsAuth.pending.type, (state) => {
       state.isPending = true;
-    },
-    [checkIsAuth.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
+    });
+    builder.addCase(checkIsAuth.fulfilled.type, (state, action: PayloadAction<IUser>) => {
       state.isAuth = true;
       state.isPending = false;
       state.error = '';
       state.user = action.payload;
-    },
-    [checkIsAuth.rejected.type]: (state, action: PayloadAction<string>) => {
+    });
+    builder.addCase(checkIsAuth.rejected.type, (state, action: PayloadAction<string>) => {
       state.isPending = false;
       state.error = action.payload;
-    },
+    });
   },
 });
 
