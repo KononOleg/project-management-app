@@ -6,13 +6,21 @@ import { RouterProvider } from 'react-router-dom';
 import router from './routes/index';
 import { useAppDispatch } from './hooks/redux';
 import { checkIsAuth } from './store/thunks/AuthThunks';
+import { SnackbarProvider } from 'notistack';
 
 const App: FC = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(checkIsAuth());
   }, []);
-  return <RouterProvider router={router} />;
+  return (
+    <SnackbarProvider
+      autoHideDuration={3000}
+      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+    >
+      <RouterProvider router={router} />
+    </SnackbarProvider>
+  );
 };
 
 export default App;
