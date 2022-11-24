@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import logo from '../../assets/icon/trello-logo.svg';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { signIn, signUp } from '../../store/thunks/AuthThunks';
-import CustomizedSnackbar from '../../components/CustomizedSnackbar';
 import { useSnackbar } from 'notistack';
 
 interface IFormInputs {
