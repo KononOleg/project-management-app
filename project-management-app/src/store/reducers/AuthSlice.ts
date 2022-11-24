@@ -1,19 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IUser } from '../../types';
+import { AxiosErrorDataType } from '../../types/api';
 import { checkIsAuth, signIn, signUp } from '../thunks/AuthThunks';
 
 interface AuthState {
   user: IUser | null;
   isPending: boolean;
   isAuth: boolean;
-  error: string;
+  error: number | null;
 }
 
 const initialState: AuthState = {
   user: null,
   isPending: false,
   isAuth: false,
-  error: '',
+  error: null,
 };
 
 export const authSlice = createSlice({
@@ -24,7 +25,7 @@ export const authSlice = createSlice({
       state.isAuth = false;
       state.user = null;
       state.isPending = false;
-      state.error = '';
+      state.error = null;
       localStorage.removeItem('token');
     },
   },
@@ -35,10 +36,10 @@ export const authSlice = createSlice({
     builder.addCase(signIn.fulfilled.type, (state, action: PayloadAction<IUser>) => {
       state.isAuth = true;
       state.isPending = false;
-      state.error = '';
+      state.error = null;
       state.user = action.payload;
     });
-    builder.addCase(signIn.rejected.type, (state, action: PayloadAction<string>) => {
+    builder.addCase(signIn.rejected.type, (state, action: PayloadAction<number>) => {
       state.isAuth = false;
       state.isPending = false;
       state.error = action.payload;
@@ -50,10 +51,10 @@ export const authSlice = createSlice({
     builder.addCase(signUp.fulfilled.type, (state, action: PayloadAction<IUser>) => {
       state.isAuth = true;
       state.isPending = false;
-      state.error = '';
+      state.error = null;
       state.user = action.payload;
     });
-    builder.addCase(signUp.rejected.type, (state, action: PayloadAction<string>) => {
+    builder.addCase(signUp.rejected.type, (state, action: PayloadAction<number>) => {
       state.isAuth = false;
       state.isPending = false;
       state.error = action.payload;
@@ -64,10 +65,10 @@ export const authSlice = createSlice({
     builder.addCase(checkIsAuth.fulfilled.type, (state, action: PayloadAction<IUser>) => {
       state.isAuth = true;
       state.isPending = false;
-      state.error = '';
+      state.error = null;
       state.user = action.payload;
     });
-    builder.addCase(checkIsAuth.rejected.type, (state, action: PayloadAction<string>) => {
+    builder.addCase(checkIsAuth.rejected.type, (state, action: PayloadAction<number>) => {
       state.isPending = false;
       state.error = action.payload;
     });

@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import logo from '../../assets/icon/trello-logo.svg';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { signIn, signUp } from '../../store/thunks/AuthThunks';
+import CustomizedSnackbar from '../../components/CustomizedSnackbar';
 
 interface IFormInputs {
   name: string;
@@ -22,15 +23,20 @@ const Authorization: FC<IProps> = ({ isSignUp }) => {
     register,
     formState: { errors, isDirty },
     handleSubmit,
+    reset,
   } = useForm<IFormInputs>();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { isAuth } = useAppSelector((state) => state.AuthReducer);
+  const { isAuth, error } = useAppSelector((state) => state.AuthReducer);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (isAuth) navigate('/');
   }, [isAuth]);
+
+  useEffect(() => {
+    reset();
+  }, [isSignUp]);
 
   const onSubmit: SubmitHandler<IFormInputs> = (data) => {
     if (isSignUp) dispatch(signUp(data));
@@ -38,64 +44,67 @@ const Authorization: FC<IProps> = ({ isSignUp }) => {
   };
 
   return (
-    <div className="authorization__wrapper">
-      <img src={logo} className="authorization__logo" />
-      <form onSubmit={handleSubmit(onSubmit)} className="authorization__form">
-        <h3 className="authorization-form__title">
-          {isSignUp ? t('AUTHORIZATION.TITLE_SIGNUP') : t('AUTHORIZATION.TITLE_SIGNIN')}
-        </h3>
+    <>
+      {error && <CustomizedSnackbar type="error" message={t(`AUTHORIZATION.${error}`)} />}
+      <div className="authorization__wrapper">
+        <img src={logo} className="authorization__logo" />
+        <form onSubmit={handleSubmit(onSubmit)} className="authorization__form">
+          <h3 className="authorization-form__title">
+            {isSignUp ? t('AUTHORIZATION.TITLE_SIGNUP') : t('AUTHORIZATION.TITLE_SIGNIN')}
+          </h3>
 
-        {isSignUp && (
+          {isSignUp && (
+            <div className="authorization-input__wrapper">
+              <input
+                placeholder={t('AUTHORIZATION.NAME_PLACEHOLDER') as string}
+                {...register('name', { required: t('AUTHORIZATION.NAME_ERROR') as string })}
+                className={`authorization__input ${errors.name && 'authorization__input_error'}`}
+              />
+              {errors.name && <p className="authorization-input__error">{errors?.name.message}</p>}
+            </div>
+          )}
+
           <div className="authorization-input__wrapper">
             <input
-              placeholder={t('AUTHORIZATION.NAME_PLACEHOLDER') as string}
-              {...register('name', { required: t('AUTHORIZATION.NAME_ERROR') as string })}
-              className={`authorization__input ${errors.name && 'authorization__input_error'}`}
+              placeholder={t('AUTHORIZATION.LOGIN_PLACEHOLDER') as string}
+              {...register('login', { required: t('AUTHORIZATION.LOGIN_ERROR') as string })}
+              className={`authorization__input ${errors.login && 'authorization__input_error'}`}
             />
-            {errors.name && <p className="authorization-input__error">{errors?.name.message}</p>}
+            {errors.login && <p className="authorization-input__error">{errors?.login.message}</p>}
           </div>
-        )}
+          <div className="authorization-input__wrapper">
+            <input
+              placeholder={t('AUTHORIZATION.PASSWORD_PLACEHOLDER') as string}
+              type="password"
+              {...register('password', {
+                required: t('AUTHORIZATION.PASSWORD_ERROR') as string,
+                minLength: { value: 8, message: t('AUTHORIZATION.PASSWORD_ERROR_LENGTH') },
+              })}
+              className={`authorization__input ${errors.password && 'authorization__input_error'}`}
+            />
+            {errors.password && (
+              <p className="authorization-input__error">{errors?.password.message}</p>
+            )}
+          </div>
+          <input
+            type="submit"
+            className="authorization__submit"
+            disabled={!isDirty}
+            value={t('AUTHORIZATION.SUBMIT') as string}
+          />
 
-        <div className="authorization-input__wrapper">
-          <input
-            placeholder={t('AUTHORIZATION.LOGIN_PLACEHOLDER') as string}
-            {...register('login', { required: t('AUTHORIZATION.LOGIN_ERROR') as string })}
-            className={`authorization__input ${errors.login && 'authorization__input_error'}`}
-          />
-          {errors.login && <p className="authorization-input__error">{errors?.login.message}</p>}
-        </div>
-        <div className="authorization-input__wrapper">
-          <input
-            placeholder={t('AUTHORIZATION.PASSWORD_PLACEHOLDER') as string}
-            type="password"
-            {...register('password', {
-              required: t('AUTHORIZATION.PASSWORD_ERROR') as string,
-              minLength: { value: 8, message: t('AUTHORIZATION.PASSWORD_ERROR_LENGTH') },
-            })}
-            className={`authorization__input ${errors.password && 'authorization__input_error'}`}
-          />
-          {errors.password && (
-            <p className="authorization-input__error">{errors?.password.message}</p>
+          {isSignUp ? (
+            <Link to="/signin" className="authorization__link">
+              {t('AUTHORIZATION.LINK_SINGIN')}
+            </Link>
+          ) : (
+            <Link to="/signup" className="authorization__link">
+              {t('AUTHORIZATION.LINK_SINGUP')}
+            </Link>
           )}
-        </div>
-        <input
-          type="submit"
-          className="authorization__submit"
-          disabled={!isDirty}
-          value={t('AUTHORIZATION.SUBMIT') as string}
-        />
-
-        {isSignUp ? (
-          <Link to="/signin" className="authorization__link">
-            {t('AUTHORIZATION.LINK_SINGIN')}
-          </Link>
-        ) : (
-          <Link to="/signup" className="authorization__link">
-            {t('AUTHORIZATION.LINK_SINGUP')}
-          </Link>
-        )}
-      </form>
-    </div>
+        </form>
+      </div>
+    </>
   );
 };
 

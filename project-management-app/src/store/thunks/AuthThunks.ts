@@ -18,8 +18,7 @@ export const signIn = createAsyncThunk(
     } catch (err) {
       if (axios.isAxiosError(err) && err.response) {
         const data = err.response.data as AxiosErrorDataType;
-        alert(data.message);
-        return thunkAPI.rejectWithValue(data.message);
+        return thunkAPI.rejectWithValue(data.statusCode);
       }
     }
   }
@@ -36,8 +35,7 @@ export const signUp = createAsyncThunk(
     } catch (err) {
       if (axios.isAxiosError(err) && err.response) {
         const data = err.response.data as AxiosErrorDataType;
-        alert(data.message);
-        return thunkAPI.rejectWithValue(data.message);
+        return thunkAPI.rejectWithValue(data.statusCode);
       }
     }
   }
@@ -53,8 +51,7 @@ export const checkIsAuth = createAsyncThunk('auth/isAuth', async (_, thunkAPI) =
     } catch (err) {
       if (axios.isAxiosError(err) && err.response) {
         const data = err.response.data as AxiosErrorDataType;
-        alert(data.message);
-        return thunkAPI.rejectWithValue(data.message);
+        return thunkAPI.rejectWithValue(data.statusCode);
       }
     }
   } else {

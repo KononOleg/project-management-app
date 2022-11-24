@@ -13,7 +13,9 @@
     "NAME_PLACEHOLDER": "Enter name",
     "LOGIN_PLACEHOLDER": "Enter login",
     "PASSWORD_PLACEHOLDER": "Enter password",
-    "SUBMIT": "Continue"
+    "SUBMIT": "Continue",
+    "401": "Login and/or password are incorrect",
+    "409": "This account is already logged in"
   },
   "EXIT_BUTTON": "Sign out"
 }
