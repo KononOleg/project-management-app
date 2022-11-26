@@ -1,3 +1,5 @@
+import { IBoard } from '..';
+
 export interface SignUpRequest {
   name: string;
   login: string;
@@ -23,4 +25,8 @@ export type AxiosErrorDataType = {
   error: string;
   message: string;
   statusCode: number;
+};
+
+export type BoardsResponse = {
+  boards: IBoard[];
 };
