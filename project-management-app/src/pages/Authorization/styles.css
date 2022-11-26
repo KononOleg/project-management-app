@@ -59,23 +59,6 @@
   color: red;
 }
 
-.authorization__submit {
-  background: #5aac44;
-  color: #fff;
-  padding: 0.8em 1.3em;
-  border-radius: 0.3em;
-  border: 0;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.authorization__submit:disabled {
-  background: #e2e4e6;
-  box-shadow: none;
-  color: hsl(0, 0%, 55%);
-  cursor: default;
-}
-
 .authorization__link {
   text-decoration: none;
   color: #0052cc;

@@ -7,6 +7,7 @@ import logo from '../../assets/icon/trello-logo.svg';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { signIn, signUp } from '../../store/thunks/AuthThunks';
 import { useSnackbar } from 'notistack';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 interface IFormInputs {
   name: string;
@@ -27,7 +28,7 @@ const Authorization: FC<IProps> = ({ isSignUp }) => {
   } = useForm<IFormInputs>();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { isAuth, error } = useAppSelector((state) => state.AuthReducer);
+  const { isAuth, error, isPending } = useAppSelector((state) => state.AuthReducer);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -89,12 +90,9 @@ const Authorization: FC<IProps> = ({ isSignUp }) => {
             <p className="authorization-input__error">{errors?.password.message}</p>
           )}
         </div>
-        <input
-          type="submit"
-          className="authorization__submit"
-          disabled={!isDirty}
-          value={t('AUTHORIZATION.SUBMIT') as string}
-        />
+        <LoadingButton disabled={!isDirty} loading={isPending} type="submit" variant="contained">
+          {t('AUTHORIZATION.SUBMIT')}
+        </LoadingButton>
 
         {isSignUp ? (
           <Link to="/signin" className="authorization__link">
