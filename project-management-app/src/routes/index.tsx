@@ -3,6 +3,7 @@ import MainLayout from '../layouts/MainLayout';
 import Authorization from '../pages/Authorization';
 import MainPage from '../pages/Main/WelcomePage';
 import WelcomePage from '../pages/WelcomePage';
+import PrivateRoute from './PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -10,7 +11,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <MainPage />,
+        element: (
+          <PrivateRoute>
+            <MainPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: '/welcome',
