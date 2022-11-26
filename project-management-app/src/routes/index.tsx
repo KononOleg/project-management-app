@@ -3,6 +3,7 @@ import MainLayout from '../layouts/MainLayout';
 import Authorization from '../pages/Authorization';
 import MainPage from '../pages/Main/WelcomePage';
 import WelcomePage from '../pages/WelcomePage';
+import LoginRoute from './LoginRoute';
 import PrivateRoute from './PrivateRoute';
 
 const router = createBrowserRouter([
@@ -23,11 +24,19 @@ const router = createBrowserRouter([
       },
       {
         path: '/signup',
-        element: <Authorization isSignUp={true} />,
+        element: (
+          <LoginRoute>
+            <Authorization isSignUp={true} />
+          </LoginRoute>
+        ),
       },
       {
         path: '/signin',
-        element: <Authorization />,
+        element: (
+          <LoginRoute>
+            <Authorization />
+          </LoginRoute>
+        ),
       },
     ],
   },
