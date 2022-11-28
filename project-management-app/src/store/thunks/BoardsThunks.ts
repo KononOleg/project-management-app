@@ -15,18 +15,21 @@ export const getBoards = createAsyncThunk('boards/getBoards', async (_, thunkAPI
   }
 });
 
-export const createBoard = createAsyncThunk('boards/getBoards', async (title: string, thunkAPI) => {
-  try {
-    await BoardsService.createBoard(title);
-    const response = await BoardsService.getBoards();
-    return response.data;
-  } catch (err) {
-    if (axios.isAxiosError(err) && err.response) {
-      const data = err.response.data as AxiosErrorDataType;
-      return thunkAPI.rejectWithValue(data.message);
+export const createBoard = createAsyncThunk(
+  'boards/createBoards',
+  async (title: string, thunkAPI) => {
+    try {
+      await BoardsService.createBoard(title);
+      const response = await BoardsService.getBoards();
+      return response.data;
+    } catch (err) {
+      if (axios.isAxiosError(err) && err.response) {
+        const data = err.response.data as AxiosErrorDataType;
+        return thunkAPI.rejectWithValue(data.message);
+      }
     }
   }
-});
+);
 
 export const deleteBoard = createAsyncThunk('boards/deleteBoard', async (id: string, thunkAPI) => {
   try {
