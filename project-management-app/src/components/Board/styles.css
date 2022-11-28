@@ -1,0 +1,17 @@
+.board__wrapper {
+  width: 240px;
+  height: 120px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.219);
+  padding: 20px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.board-button__wrapper {
+  display: flex;
+  justify-content: flex-end;
+}

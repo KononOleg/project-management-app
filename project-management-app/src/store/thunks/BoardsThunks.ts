@@ -34,7 +34,8 @@ export const createBoard = createAsyncThunk(
 export const deleteBoard = createAsyncThunk('boards/deleteBoard', async (id: string, thunkAPI) => {
   try {
     await BoardsService.deleteBoard(id);
-    return id;
+    const response = await BoardsService.getBoards();
+    return response.data;
   } catch (err) {
     if (axios.isAxiosError(err) && err.response) {
       const data = err.response.data as AxiosErrorDataType;
@@ -47,7 +48,8 @@ export const updateBoard = createAsyncThunk(
   'boards/updateBoard',
   async (payload: { id: string; title: string }, thunkAPI) => {
     try {
-      const response = await BoardsService.updateBoard(payload.id, payload.title);
+      await BoardsService.updateBoard(payload.id, payload.title);
+      const response = await BoardsService.getBoards();
       return response.data;
     } catch (err) {
       if (axios.isAxiosError(err) && err.response) {

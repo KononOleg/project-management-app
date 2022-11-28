@@ -1,6 +1,14 @@
 .main-page__wrapper {
   display: flex;
-  flex-grow: 1;
-  justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.main-page__boards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
 }

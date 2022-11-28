@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IBoard } from '../../types';
-import { createBoard, deleteBoard, getBoards } from '../thunks/BoardsThunks';
+import { createBoard, deleteBoard, getBoards, updateBoard } from '../thunks/BoardsThunks';
 
 interface boardsSlice {
   boards: IBoard[];
@@ -53,13 +53,28 @@ export const boardsSlice = createSlice({
       state.isPending = true;
     });
 
-    builder.addCase(deleteBoard.fulfilled.type, (state, action: PayloadAction<string>) => {
+    builder.addCase(deleteBoard.fulfilled.type, (state, action: PayloadAction<IBoard[]>) => {
       state.isPending = false;
       state.error = null;
-      state.boards = state.boards.filter((board) => board.id !== action.payload);
+      state.boards = action.payload;
     });
 
     builder.addCase(deleteBoard.rejected.type, (state, action: PayloadAction<number>) => {
+      state.isPending = false;
+      state.error = action.payload;
+    });
+
+    builder.addCase(updateBoard.pending.type, (state) => {
+      state.isPending = true;
+    });
+
+    builder.addCase(updateBoard.fulfilled.type, (state, action: PayloadAction<IBoard[]>) => {
+      state.isPending = false;
+      state.error = null;
+      state.boards = action.payload;
+    });
+
+    builder.addCase(updateBoard.rejected.type, (state, action: PayloadAction<number>) => {
       state.isPending = false;
       state.error = action.payload;
     });
