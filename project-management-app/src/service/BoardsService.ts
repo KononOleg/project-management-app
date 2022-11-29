@@ -12,12 +12,13 @@ export default class BoardsService {
     return $api.get<IBoard>(`/boards/${id}`);
   }
 
-  static async createBoard(title: string): Promise<AxiosResponse<IBoard>> {
-    return $api.post<IBoard>('/boards', { title, owner: '2', users: [] });
+  static async createBoard(title: string, owner: string): Promise<AxiosResponse<IBoard>> {
+    return $api.post<IBoard>('/boards', { title, owner: owner, users: [] });
   }
 
-  static async updateBoard(id: string, title: string): Promise<AxiosResponse<IBoard>> {
-    return $api.put<IBoard>(`/boards/${id}`, { title, owner: '2', users: [] });
+  static async updateBoard(board: IBoard): Promise<AxiosResponse<IBoard>> {
+    const { _id, ...rest } = board;
+    return $api.put<IBoard>(`/boards/${_id}`, { ...rest });
   }
 
   static async deleteBoard(id: string) {
