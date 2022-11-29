@@ -1,8 +1,9 @@
 .main-page__wrapper {
   display: flex;
-  align-items: center;
   flex-direction: column;
   gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .main-page__boards {
@@ -11,4 +12,8 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   width: 100%;
+}
+
+.main-page__title {
+  color: rgba(0, 0, 0, 0.5);
 }
