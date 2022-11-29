@@ -1,9 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import BoardsService from '../../service/BoardsService';
-import { IToken } from '../../types';
+
 import { AxiosErrorDataType } from '../../types/api';
-import jwt_decode from 'jwt-decode';
 
 export const getBoards = createAsyncThunk('boards/getBoards', async (_, thunkAPI) => {
   try {
@@ -19,11 +18,9 @@ export const getBoards = createAsyncThunk('boards/getBoards', async (_, thunkAPI
 
 export const createBoard = createAsyncThunk(
   'boards/createBoards',
-  async (title: string, thunkAPI) => {
+  async (payload: { owner: string; title: string }, thunkAPI) => {
     try {
-      const token = localStorage.getItem('token');
-      const tokenData: IToken = jwt_decode(token as string);
-      await BoardsService.createBoard(title, tokenData.id);
+      await BoardsService.createBoard(payload.title, payload.owner);
       const response = await BoardsService.getBoards();
       return response.data;
     } catch (err) {

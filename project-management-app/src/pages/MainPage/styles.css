@@ -16,4 +16,21 @@
 
 .main-page__title {
   color: rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+}
+
+.main-page__add-button {
+  width: 280px;
+  height: 160px;
+  background-color: #091e420a;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #172b4d;
+}
+
+.main-page__add-button:hover {
+  background-color: #091e4214;
 }
