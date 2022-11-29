@@ -17,5 +17,16 @@
     "401": "Login and/or password are incorrect",
     "409": "This account is already logged in"
   },
-  "EXIT_BUTTON": "Sign out"
+  "EXIT_BUTTON": "Sign out",
+  "BOARDS": {
+    "TITLE": "Your boards",
+    "CREATE": "Create board",
+    "CREATE_APPLY": "Create",
+    "DELETE": "Do you want to delete this board?",
+    "DELETE_DISAGREE": "Cancel",
+    "DELETE_AGREE": "Delete",
+    "EDIT": "Edit board",
+    "EDIT_APPLY": "Save",
+    "TITLE_LABEL": "Title"
+  }
 }

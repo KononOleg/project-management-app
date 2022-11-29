@@ -7,6 +7,7 @@ import Board from '../../components/Board';
 import { useSnackbar } from 'notistack';
 import { createBoard, getBoards } from '../../store/thunks/BoardsThunks';
 import BoardCreateModal from './components/BoardCreateModal';
+import { useTranslation } from 'react-i18next';
 
 const MainPage: FC = () => {
   const [openCreateModal, setOpenCreateModal] = useState(false);
@@ -15,6 +16,7 @@ const MainPage: FC = () => {
   const { user } = useAppSelector((state) => state.AuthReducer);
   const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (error) enqueueSnackbar(error, { variant: 'error' });
@@ -36,13 +38,13 @@ const MainPage: FC = () => {
     <>
       {isPending && <Loading />}
       <div className="main-page__wrapper">
-        <h2 className="main-page__title">YOUR BOARDS:</h2>
+        <h2 className="main-page__title">{t('BOARDS.TITLE')}:</h2>
         <div className="main-page__boards">
           {boards.map((board: IBoard) => (
             <Board key={board._id} id={board._id} title={board.title} />
           ))}
           <div className="main-page__add-button" onClick={() => setOpenCreateModal(true)}>
-            <p>Create board</p>
+            <p>{t('BOARDS.CREATE')}</p>
           </div>
         </div>
       </div>

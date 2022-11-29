@@ -10,6 +10,7 @@ import {
   TextField,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
   title: string;
@@ -27,6 +28,8 @@ const BoardUpdateModal: FC<IProps> = ({
   const [newTitle, setNewTitle] = useState(title);
   const [disabled, setDisabled] = useState(false);
 
+  const { t } = useTranslation();
+
   useEffect(() => {
     if (newTitle !== title) setDisabled(false);
     else setDisabled(true);
@@ -35,7 +38,7 @@ const BoardUpdateModal: FC<IProps> = ({
   return (
     <Dialog open={openUpdateModal} onClose={handleCloseUpdateModal}>
       <DialogTitle className="modal__title">
-        {'Edit board'}
+        {t('BOARDS.EDIT')}
         <IconButton onClick={handleCloseUpdateModal}>
           <CloseIcon />
         </IconButton>
@@ -45,8 +48,8 @@ const BoardUpdateModal: FC<IProps> = ({
           defaultValue={title}
           autoFocus
           margin="normal"
-          id="name"
-          label="Board name"
+          id="title"
+          label={t('BOARDS.TITLE_LABEL')}
           type="text"
           fullWidth
           variant="filled"
@@ -61,7 +64,7 @@ const BoardUpdateModal: FC<IProps> = ({
           onClick={() => handleUpdateBoard(newTitle)}
           disabled={disabled}
         >
-          Edit
+          {t('BOARDS.EDIT_APPLY')}
         </Button>
       </DialogActions>
     </Dialog>

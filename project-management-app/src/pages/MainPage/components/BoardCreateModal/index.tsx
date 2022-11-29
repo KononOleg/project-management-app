@@ -10,6 +10,7 @@ import {
   TextField,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
   openCreateModal: boolean;
@@ -23,11 +24,12 @@ const BoardCreateModal: FC<IProps> = ({
   handlerCreateBoard,
 }) => {
   const [title, setTitle] = useState('');
+  const { t } = useTranslation();
 
   return (
     <Dialog open={openCreateModal} onClose={handlerCloseCreateBoard}>
       <DialogTitle className="modal__title">
-        {'Create board'}
+        {t('BOARDS.CREATE')}
         <IconButton onClick={handlerCloseCreateBoard}>
           <CloseIcon />
         </IconButton>
@@ -37,7 +39,7 @@ const BoardCreateModal: FC<IProps> = ({
           autoFocus
           margin="normal"
           id="title"
-          label="Board title"
+          label={t('BOARDS.TITLE_LABEL')}
           type="text"
           fullWidth
           variant="filled"
@@ -51,7 +53,7 @@ const BoardCreateModal: FC<IProps> = ({
           fullWidth={true}
           onClick={() => handlerCreateBoard(title)}
         >
-          Create
+          {t('BOARDS.CREATE_APPLY')}
         </Button>
       </DialogActions>
     </Dialog>
