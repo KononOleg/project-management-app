@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IUser } from '../../types';
-import { AxiosErrorDataType } from '../../types/api';
 import { checkIsAuth, signIn, signUp } from '../thunks/AuthThunks';
 
 interface AuthState {
