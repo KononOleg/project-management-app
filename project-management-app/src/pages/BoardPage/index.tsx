@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import Loading from '../../components/Loading';
 import { useSnackbar } from 'notistack';
 import { getBoard } from '../../store/thunks/BoardThunks';
+import Columns from '../../components/Columns';
 
 const BoardPage: FC = () => {
   let { boardId } = useParams();
@@ -25,6 +26,7 @@ const BoardPage: FC = () => {
       {isPending && <Loading />}
       <div className="board-page__wrapper">
         <h2 className="board-page__title">{board?.title}</h2>
+        <Columns id={boardId as string} />
       </div>
     </>
   );

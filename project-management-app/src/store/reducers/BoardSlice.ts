@@ -1,15 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IBoard } from '../../types';
-import { getBoard } from '../thunks/BoardThunks';
+import { IBoard, IColumn } from '../../types';
+import { getBoard, getColumns } from '../thunks/BoardThunks';
 
 interface BoardState {
   board: IBoard | null;
+  columns: IColumn[] | null;
   isPending: boolean;
   error: string;
 }
 
 const initialState: BoardState = {
   board: null,
+  columns: null,
   isPending: false,
   error: '',
 };
@@ -28,6 +30,18 @@ export const boardSlice = createSlice({
       state.error = '';
     });
     builder.addCase(getBoard.rejected.type, (state, action: PayloadAction<string>) => {
+      state.isPending = false;
+      state.error = action.payload;
+    });
+    builder.addCase(getColumns.pending.type, (state) => {
+      state.isPending = true;
+    });
+    builder.addCase(getColumns.fulfilled.type, (state, action: PayloadAction<IColumn[]>) => {
+      state.columns = action.payload;
+      state.isPending = false;
+      state.error = '';
+    });
+    builder.addCase(getColumns.rejected.type, (state, action: PayloadAction<string>) => {
       state.isPending = false;
       state.error = action.payload;
     });
