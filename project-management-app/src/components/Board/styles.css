@@ -9,6 +9,7 @@
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .board-button__wrapper {

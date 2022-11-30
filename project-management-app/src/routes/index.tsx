@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
 import Authorization from '../pages/Authorization';
+import BoardPage from '../pages/BoardPage';
 import MainPage from '../pages/MainPage';
 import WelcomePage from '../pages/WelcomePage';
 import LoginRoute from './LoginRoute';
@@ -15,6 +16,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MainPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/board/:boardId',
+        element: (
+          <PrivateRoute>
+            <BoardPage />
           </PrivateRoute>
         ),
       },

@@ -7,6 +7,7 @@ import BoardUpdateModal from './components/BoardUpdateModal';
 import BoardDeleteModal from './components/BoardDeleteModal';
 import DeleteIcon from '@mui/icons-material/Delete';
 import UpdateIcon from '@mui/icons-material/Update';
+import { Link } from 'react-router-dom';
 
 interface IProps {
   id: string;
@@ -27,19 +28,30 @@ const Board: FC<IProps> = ({ id, title }) => {
     dispatch(updateBoard({ id: id, title: newTitle }));
     setOpenUpdateModal(false);
   };
+
+  const handleOpenCreateModal = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setOpenUpdateModal(true);
+  };
+  const handleOpenDeleleModal = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setOpenDeleteModal(true);
+  };
   return (
     <>
-      <div className="board__wrapper">
+      <Link to={`/board/${id}`} className="board__wrapper">
         <h3>{title}</h3>
         <div className="board-button__wrapper">
-          <IconButton onClick={() => setOpenUpdateModal(true)}>
+          <IconButton onClick={handleOpenCreateModal}>
             <UpdateIcon />
           </IconButton>
-          <IconButton onClick={() => setOpenDeleteModal(true)}>
+          <IconButton onClick={handleOpenDeleleModal}>
             <DeleteIcon />
           </IconButton>
         </div>
-      </div>
+      </Link>
 
       <BoardDeleteModal
         openDeleteModal={openDeleteModal}
