@@ -1,5 +1,9 @@
 .board-page__wrapper {
-  padding-left: 20px;
+  background: url('https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2400x1600/989b54c20074813557dcd19ff360f271/photo-1660388330411-26f4cf299a64.jpg');
+  height: calc(100vh - 190px);
+  background-position: 50%;
+  background-size: cover;
+  padding: 20px;
 }
 
 .board-page__wrapper {
