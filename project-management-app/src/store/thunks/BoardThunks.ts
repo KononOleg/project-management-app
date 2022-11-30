@@ -27,3 +27,18 @@ export const getColumns = createAsyncThunk('boards/getColumns', async (id: strin
     }
   }
 });
+
+export const createColumn = createAsyncThunk(
+  'boards/createColumn',
+  async (payload: { boardId: string; titleColumn: string }, thunkAPI) => {
+    try {
+      const response = await BoardService.createColumn(payload.boardId, payload.titleColumn, 0);
+      return response.data;
+    } catch (err) {
+      if (axios.isAxiosError(err) && err.response) {
+        const data = err.response.data as AxiosErrorDataType;
+        return thunkAPI.rejectWithValue(data.message);
+      }
+    }
+  }
+);

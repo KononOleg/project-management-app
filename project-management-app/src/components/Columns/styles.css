@@ -2,3 +2,8 @@
   display: flex;
   gap: 20px;
 }
+
+.columns__create-button {
+  padding: 6px 8px;
+  background-color: #0000003d;
+}

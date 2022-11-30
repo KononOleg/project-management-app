@@ -7,7 +7,7 @@ export default class BoardService {
     return await $api.get<IColumn[]>(`/boards/${boardId}/columns`);
   }
 
-  static async addColumn(
+  static async createColumn(
     boardId: string,
     titleColumn: string,
     orderColumn: number
@@ -15,7 +15,6 @@ export default class BoardService {
     return await $api.post<IColumn>(`/boards/${boardId}/columns`, {
       title: titleColumn,
       order: orderColumn,
-      boardId,
     });
   }
 

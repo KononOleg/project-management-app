@@ -1,0 +1,53 @@
+.create-column__wrapper {
+  background-color: #ffffff3d;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: 0.3s all;
+  width: 250px;
+  padding: 10px;
+}
+.create-column__wrapper_edit {
+  background-color: #fff;
+}
+.create-column__title {
+  color: #fff;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.create-column__title_span {
+  font-size: 30px;
+  display: inline-block;
+  line-height: 20px;
+}
+
+.create-column__input {
+  padding: 10px;
+  background: #fff;
+  border: 2px solid #0079bf;
+  outline: none;
+  border-radius: 3px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.create-column__buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 10px;
+}
+.create-column__add {
+  background-color: #0079bf;
+  color: #fff;
+  border: 0;
+  padding: 9px 16px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.create-column__cancel {
+  border: 0;
+  font-size: 25px;
+  color: rgb(116, 116, 116);
+  cursor: pointer;
+  background-color: transparent;
+}
