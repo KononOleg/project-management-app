@@ -9,7 +9,7 @@ interface IProps {
   title: string;
 }
 
-const RenameColumn: FC<IProps> = ({ title }) => {
+const EditColumn: FC<IProps> = ({ title }) => {
   const [open, setOpen] = useState(false);
   const [newTitle, setNewTitle] = useState('');
   const dispatch = useAppDispatch();
@@ -50,4 +50,4 @@ const RenameColumn: FC<IProps> = ({ title }) => {
   );
 };
 
-export default RenameColumn;
+export default EditColumn;
