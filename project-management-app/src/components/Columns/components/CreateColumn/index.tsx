@@ -13,7 +13,11 @@ const CreateColumn: FC<IProps> = ({ boardId }) => {
   const dispatch = useAppDispatch();
 
   return (
-    <div className={`create-column__wrapper ${open && 'create-column__wrapper_edit'}`}>
+    <div
+      className={`create-column__wrapper ${
+        open ? 'create-column__wrapper_edit' : 'create-column__wrapper_default'
+      }`}
+    >
       {!open ? (
         <p className="create-column__title" onClick={() => setOpen(true)}>
           <span className="create-column__title_span">+</span>Добавить еще одну колонку

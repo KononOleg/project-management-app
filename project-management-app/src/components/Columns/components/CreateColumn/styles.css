@@ -1,19 +1,26 @@
 .create-column__wrapper {
+  border-radius: 3px;
+  width: 250px;
+}
+.create-column__wrapper_default {
   background-color: #ffffff3d;
   cursor: pointer;
-  border-radius: 3px;
-  transition: 0.3s all;
-  width: 250px;
-  padding: 10px;
+}
+.create-column__wrapper_default:hover {
+  background-color: #ffffff52;
 }
 .create-column__wrapper_edit {
   background-color: #ebecf0;
+  cursor: default;
+  padding: 10px;
 }
 .create-column__title {
   color: #fff;
   display: flex;
   gap: 5px;
   align-items: center;
+  padding: 10px;
+  font-size: 15px;
 }
 .create-column__title_span {
   font-size: 30px;
