@@ -1,0 +1,14 @@
+.column__wrapper {
+  background-color: #ebecf0;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  width: 280px;
+}
+
+.tasks__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}

@@ -1,0 +1,15 @@
+.column-rename__wrapper {
+  box-sizing: border-box;
+}
+.column-rename__input {
+  padding: 5px;
+  background: #fff;
+  border: 2px solid #0079bf;
+  outline: none;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.column-rename__title {
+  margin: 9px 0;
+}
