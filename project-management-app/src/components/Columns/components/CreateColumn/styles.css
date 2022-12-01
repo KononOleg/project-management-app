@@ -7,7 +7,7 @@
   padding: 10px;
 }
 .create-column__wrapper_edit {
-  background-color: #fff;
+  background-color: #ebecf0;
 }
 .create-column__title {
   color: #fff;
@@ -22,7 +22,7 @@
 }
 
 .create-column__input {
-  padding: 10px;
+  padding: 8px;
   background: #fff;
   border: 2px solid #0079bf;
   outline: none;

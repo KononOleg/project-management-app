@@ -3,7 +3,7 @@ import { FC, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { createColumn, getColumns } from '../../store/thunks/BoardThunks';
 import { IColumn } from '../../types';
-import CreateColumnButton from './components/CreateColumnButton';
+import CreateColumn from './components/CreateColumn';
 import Column from './components/Column';
 
 interface IProps {
@@ -18,16 +18,12 @@ const Columns: FC<IProps> = ({ id }) => {
     dispatch(getColumns(id as string));
   }, []);
 
-  const handleCreateColumn = (title: string) => {
-    dispatch(createColumn({ boardId: id, titleColumn: title }));
-  };
-
   return (
     <div className="columns__wrapper">
       {columns?.map((column: IColumn) => (
         <Column key={column._id} {...column} />
       ))}
-      <CreateColumnButton handleCreateColumn={handleCreateColumn} />
+      <CreateColumn boardId={id} />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import './styles.css';
 import { FC } from 'react';
 import { IColumn } from '../../../../types';
-import CreateColumnButton from '../CreateColumnButton';
+import CreateColumn from '../CreateColumn';
 import RenameColumn from './components/RenameColumn';
 
 const Column: FC<IColumn> = ({ title }) => {
@@ -10,7 +10,7 @@ const Column: FC<IColumn> = ({ title }) => {
       <RenameColumn title={title} renameColumn={(newTitle: string) => console.log(newTitle)} />
       <div className="tasks__wrapper"></div>
       <div>
-        <CreateColumnButton handleCreateColumn={(title: string) => console.log(title)} />
+        <CreateColumn boardId="2" />
       </div>
     </div>
   );

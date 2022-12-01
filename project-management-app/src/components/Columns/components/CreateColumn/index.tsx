@@ -1,13 +1,16 @@
 import './styles.css';
 import { FC, useState } from 'react';
+import { useAppDispatch } from '../../../../hooks/redux';
+import { createColumn } from '../../../../store/thunks/BoardThunks';
 
 interface IProps {
-  handleCreateColumn: (title: string) => void;
+  boardId: string;
 }
 
-const CreateColumnButton: FC<IProps> = ({ handleCreateColumn }) => {
+const CreateColumn: FC<IProps> = ({ boardId }) => {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState('');
+  const dispatch = useAppDispatch();
 
   return (
     <div className={`create-column__wrapper ${open && 'create-column__wrapper_edit'}`}>
@@ -28,7 +31,7 @@ const CreateColumnButton: FC<IProps> = ({ handleCreateColumn }) => {
               className="create-column__add"
               onClick={() => {
                 setTitle('');
-                handleCreateColumn(title);
+                dispatch(createColumn({ boardId, titleColumn: title }));
               }}
             >
               Добавить список
@@ -43,4 +46,4 @@ const CreateColumnButton: FC<IProps> = ({ handleCreateColumn }) => {
   );
 };
 
-export default CreateColumnButton;
+export default CreateColumn;

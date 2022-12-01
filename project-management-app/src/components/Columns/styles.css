@@ -1,6 +1,7 @@
 .columns__wrapper {
   display: flex;
   gap: 20px;
+  align-items: flex-start;
 }
 
 .columns__create-button {
