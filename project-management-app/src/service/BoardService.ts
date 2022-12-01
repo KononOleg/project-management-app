@@ -27,7 +27,6 @@ export default class BoardService {
     return await $api.put<IColumn>(`/boards/${boardId}/columns/${columnId}`, {
       title: titleColumn,
       order: orderColumn,
-      boardId,
     });
   }
 

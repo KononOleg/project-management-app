@@ -1,15 +1,19 @@
-.column-rename__wrapper {
-  box-sizing: border-box;
+.column-edit__wrapper {
+  display: flex;
+  justify-content: space-between;
 }
-.column-rename__input {
+.column-edit__rename {
+  display: flex;
+}
+.column-edit__input {
   padding: 5px;
   background: #fff;
   border: 2px solid #0079bf;
   outline: none;
   border-radius: 3px;
-  box-sizing: border-box;
+  width: 98%;
 }
 
-.column-rename__title {
+.column-edit__title {
   margin: 9px 0;
 }
