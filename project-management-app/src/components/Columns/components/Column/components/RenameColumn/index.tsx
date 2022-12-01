@@ -3,15 +3,16 @@ import { FC, useState } from 'react';
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { IconButton } from '@mui/material';
+import { useAppDispatch } from '../../../../../../hooks/redux';
 
 interface IProps {
   title: string;
-  renameColumn: (newTitle: string) => void;
 }
 
-const RenameColumn: FC<IProps> = ({ title, renameColumn }) => {
+const RenameColumn: FC<IProps> = ({ title }) => {
   const [open, setOpen] = useState(false);
   const [newTitle, setNewTitle] = useState('');
+  const dispatch = useAppDispatch();
 
   const handlerCloseRename = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
@@ -23,7 +24,6 @@ const RenameColumn: FC<IProps> = ({ title, renameColumn }) => {
     e.stopPropagation();
     e.preventDefault();
     setOpen(false);
-    renameColumn(newTitle);
   };
 
   return (
