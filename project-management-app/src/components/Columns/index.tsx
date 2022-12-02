@@ -7,6 +7,8 @@ import CreateColumn from './components/CreateColumn';
 import Column from './components/Column';
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 import { reorder } from '../../helpers';
+import BoardService from '../../service/BoardService';
+import { setColumns } from '../../store/reducers/BoardSlice';
 
 interface IProps {
   id: string;
@@ -23,8 +25,13 @@ const Columns: FC<IProps> = ({ id }) => {
   const handleDragEnd = (result: DropResult) => {
     if (!result.destination) return;
     const newColumns = reorder(columns, result.source.index, result.destination.index);
-    console.log(newColumns);
-    /*    setR(items); */ // change the order on the server
+    const copyNewColumns: IColumn[] = [];
+    newColumns.map((newColumn, index) => {
+      const { boardId, _id, title } = newColumn;
+      copyNewColumns.push({ ...newColumn, order: index + 1 });
+      BoardService.updateColumn(boardId, _id, title, index + 1);
+    });
+    dispatch(setColumns(copyNewColumns));
   };
 
   return (
@@ -34,7 +41,7 @@ const Columns: FC<IProps> = ({ id }) => {
           {(provided) => (
             <div {...provided.droppableProps} ref={provided.innerRef} className="columns__list">
               {[...columns]
-                ?.sort((a, b) => a.order - b.order)
+                .sort((a, b) => a.order - b.order)
                 .map((column: IColumn, index: number) => {
                   return (
                     <Draggable key={column._id} draggableId={column._id} index={index}>
@@ -55,7 +62,7 @@ const Columns: FC<IProps> = ({ id }) => {
           )}
         </Droppable>
       </DragDropContext>
-      <CreateColumn boardId={id} orderColumn={columns.length} />
+      <CreateColumn boardId={id} orderColumn={columns.length + 1} />
     </div>
   );
 };

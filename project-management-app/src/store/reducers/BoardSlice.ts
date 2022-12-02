@@ -25,7 +25,11 @@ const initialState: BoardState = {
 export const boardSlice = createSlice({
   name: 'board',
   initialState,
-  reducers: {},
+  reducers: {
+    setColumns(state, action: PayloadAction<IColumn[]>) {
+      state.columns = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getBoard.pending.type, (state) => {
       state.isPending = true;
@@ -91,3 +95,5 @@ export const boardSlice = createSlice({
 });
 
 export default boardSlice.reducer;
+
+export const { setColumns } = boardSlice.actions;
