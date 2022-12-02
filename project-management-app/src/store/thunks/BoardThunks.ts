@@ -30,9 +30,13 @@ export const getColumns = createAsyncThunk('board/getColumns', async (id: string
 
 export const createColumn = createAsyncThunk(
   'board/createColumn',
-  async (payload: { boardId: string; titleColumn: string }, thunkAPI) => {
+  async (payload: { boardId: string; titleColumn: string; orderColumn: number }, thunkAPI) => {
     try {
-      const response = await BoardService.createColumn(payload.boardId, payload.titleColumn, 0);
+      const response = await BoardService.createColumn(
+        payload.boardId,
+        payload.titleColumn,
+        payload.orderColumn
+      );
       return response.data;
     } catch (err) {
       if (axios.isAxiosError(err) && err.response) {

@@ -5,9 +5,10 @@ import { createColumn } from '../../../../store/thunks/BoardThunks';
 
 interface IProps {
   boardId: string;
+  orderColumn: number;
 }
 
-const CreateColumn: FC<IProps> = ({ boardId }) => {
+const CreateColumn: FC<IProps> = ({ boardId, orderColumn }) => {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState('');
   const dispatch = useAppDispatch();
@@ -35,7 +36,7 @@ const CreateColumn: FC<IProps> = ({ boardId }) => {
               className="create-column__add"
               onClick={() => {
                 setTitle('');
-                dispatch(createColumn({ boardId, titleColumn: title }));
+                dispatch(createColumn({ boardId, titleColumn: title, orderColumn }));
               }}
             >
               Добавить список

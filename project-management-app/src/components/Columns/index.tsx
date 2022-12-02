@@ -23,6 +23,7 @@ const Columns: FC<IProps> = ({ id }) => {
   const handleDragEnd = (result: DropResult) => {
     if (!result.destination) return;
     const newColumns = reorder(columns, result.source.index, result.destination.index);
+    console.log(newColumns);
     /*    setR(items); */ // change the order on the server
   };
 
@@ -32,27 +33,29 @@ const Columns: FC<IProps> = ({ id }) => {
         <Droppable droppableId="columns" direction="horizontal">
           {(provided) => (
             <div {...provided.droppableProps} ref={provided.innerRef} className="columns__list">
-              {columns?.map((column: IColumn, index: number) => {
-                return (
-                  <Draggable key={column._id} draggableId={column._id} index={index}>
-                    {(provided, snapshot) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                      >
-                        <Column key={column._id} {...column} isDragging={snapshot.isDragging} />
-                      </div>
-                    )}
-                  </Draggable>
-                );
-              })}
+              {[...columns]
+                ?.sort((a, b) => a.order - b.order)
+                .map((column: IColumn, index: number) => {
+                  return (
+                    <Draggable key={column._id} draggableId={column._id} index={index}>
+                      {(provided, snapshot) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <Column key={column._id} {...column} isDragging={snapshot.isDragging} />
+                        </div>
+                      )}
+                    </Draggable>
+                  );
+                })}
               {provided.placeholder}
             </div>
           )}
         </Droppable>
       </DragDropContext>
-      <CreateColumn boardId={id} />
+      <CreateColumn boardId={id} orderColumn={columns.length} />
     </div>
   );
 };
