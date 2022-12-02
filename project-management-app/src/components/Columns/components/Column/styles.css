@@ -6,10 +6,15 @@
   padding: 8px;
   width: 280px;
   box-sizing: border-box;
+  transition: 0.1s all;
 }
 
 .tasks__wrapper {
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
+
+.column__wrapper_dragging {
+  transform: rotate(3deg);
 }

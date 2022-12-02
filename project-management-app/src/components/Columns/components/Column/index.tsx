@@ -4,9 +4,13 @@ import { IColumn } from '../../../../types';
 import EditColumn from './components/EditColumn';
 import CreateTask from './components/CreateTask';
 
-const Column: FC<IColumn> = ({ _id, title, boardId, order }) => {
+interface IProps extends IColumn {
+  isDragging: boolean;
+}
+
+const Column: FC<IProps> = ({ _id, title, boardId, order, isDragging }) => {
   return (
-    <div className="column__wrapper">
+    <div className={`column__wrapper ${isDragging ? 'column__wrapper_dragging' : ''}`}>
       <EditColumn titleColumn={title} columnId={_id} boardId={boardId} orderColumn={order} />
       <div className="tasks__wrapper"></div>
       <div>

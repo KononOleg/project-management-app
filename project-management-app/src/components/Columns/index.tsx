@@ -1,11 +1,12 @@
 import './styles.css';
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getColumns } from '../../store/thunks/BoardThunks';
 import { IColumn } from '../../types';
 import CreateColumn from './components/CreateColumn';
 import Column from './components/Column';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
+import { reorder } from '../../helpers';
 
 interface IProps {
   id: string;
@@ -15,48 +16,39 @@ const Columns: FC<IProps> = ({ id }) => {
   const dispatch = useAppDispatch();
   const { columns } = useAppSelector((state) => state.BoardSlice);
 
-  const [r, setR] = useState([]);
-
   useEffect(() => {
     dispatch(getColumns(id as string));
-    setR(columns as any);
   }, []);
 
-  const handleDragEnd = (result: any) => {
+  const handleDragEnd = (result: DropResult) => {
     if (!result.destination) return;
-    const items = Array.from(r);
-    const [reorderDate] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderDate);
-    setR(items);
+    const newColumns = reorder(columns, result.source.index, result.destination.index);
+    /*    setR(items); */ // change the order on the server
   };
 
   return (
     <div className="columns__wrapper">
       <DragDropContext onDragEnd={handleDragEnd}>
-        <Droppable droppableId="list">
+        <Droppable droppableId="columns" direction="horizontal">
           {(provided) => (
-            <ul
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-              style={{ display: 'flex', gap: '20px', flexDirection: 'column' }}
-            >
-              {r?.map((column: IColumn, index: number) => {
+            <div {...provided.droppableProps} ref={provided.innerRef} className="columns__list">
+              {columns?.map((column: IColumn, index: number) => {
                 return (
-                  <Draggable key={column._id} draggableId={column._id.toString()} index={index}>
-                    {(provided) => (
+                  <Draggable key={column._id} draggableId={column._id} index={index}>
+                    {(provided, snapshot) => (
                       <div
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
-                        <Column key={column._id} {...column} />
+                        <Column key={column._id} {...column} isDragging={snapshot.isDragging} />
                       </div>
                     )}
                   </Draggable>
                 );
               })}
               {provided.placeholder}
-            </ul>
+            </div>
           )}
         </Droppable>
       </DragDropContext>
