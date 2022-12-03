@@ -2,12 +2,12 @@ import $api from './http';
 import { AxiosResponse } from 'axios';
 import { ITask } from '../types';
 
-export default class BoardService {
+export default class TasksService {
   static async getTasks(boardId: string, columnId: string): Promise<AxiosResponse<ITask[]>> {
     return await $api.get<ITask[]>(`/boards/${boardId}/columns/${columnId}/tasks`);
   }
 
-  static async addTask(
+  static async createTask(
     boardId: string,
     columnId: string,
     title: string,
@@ -20,8 +20,6 @@ export default class BoardService {
       order,
       description,
       userId,
-      boardId,
-      columnId,
       users: [],
     });
   }
@@ -41,8 +39,6 @@ export default class BoardService {
       order,
       description,
       userId,
-      boardId,
-      columnId,
       users,
     });
   }

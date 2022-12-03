@@ -1,17 +1,35 @@
 import './styles.css';
 import { FC, useState } from 'react';
-import { useAppDispatch } from '../../../../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../../../../hooks/redux';
 import { TextareaAutosize } from '@mui/material';
+import { createTask } from '../../../../../../store/thunks/TasksThunks';
 
 interface IProps {
   boardId: string;
   columnId: string;
+  order: number;
 }
 
-const CreateTask: FC<IProps> = ({ boardId, columnId }) => {
+const CreateTask: FC<IProps> = ({ boardId, columnId, order }) => {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState('');
+
+  const { user } = useAppSelector((state) => state.AuthReducer);
   const dispatch = useAppDispatch();
+
+  const handlerCreateTask = () => {
+    dispatch(
+      createTask({
+        boardId,
+        columnId,
+        title,
+        order,
+        description: ' ',
+        userId: user?._id as string,
+      })
+    );
+    setTitle('');
+  };
 
   return (
     <div className={`create-task__wrapper ${open && 'create-task__wrapper_edit'}`}>
@@ -22,6 +40,7 @@ const CreateTask: FC<IProps> = ({ boardId, columnId }) => {
       ) : (
         <div>
           <TextareaAutosize
+            value={title}
             autoFocus
             placeholder="Ввести заголовок для этой карточки"
             className="create-task__input"
@@ -29,12 +48,7 @@ const CreateTask: FC<IProps> = ({ boardId, columnId }) => {
             minRows={2}
           />
           <div className="create-task__buttons">
-            <button
-              className="create-task__add"
-              onClick={() => {
-                setTitle('');
-              }}
-            >
+            <button className="create-task__add" onClick={handlerCreateTask}>
               Добавить карточку
             </button>
             <button onClick={() => setOpen(false)} className="create-task__cancel">
