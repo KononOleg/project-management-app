@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 
 import { API_HOST } from '../../constants';
 
-const $api = axios.create({ withCredentials: true, baseURL: API_HOST });
+const $api = axios.create({ baseURL: API_HOST });
 
 $api.interceptors.request.use((config: AxiosRequestConfig) => {
   if (config.headers) {
