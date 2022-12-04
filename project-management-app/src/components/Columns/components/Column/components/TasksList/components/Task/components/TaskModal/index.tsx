@@ -3,10 +3,10 @@ import { FC } from 'react';
 import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton } from '@mui/material';
 import { ITask } from '../../../../../../../../../../types';
 import Button from '@mui/material/Button';
-import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import BrandingWatermarkOutlinedIcon from '@mui/icons-material/BrandingWatermarkOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import SaveIcon from '@mui/icons-material/Save';
+import TaskDescription from './components/TaskDescription';
 
 interface IProps {
   openModal: boolean;
@@ -15,10 +15,11 @@ interface IProps {
 }
 
 const TaskModal: FC<IProps> = ({ openModal, handleCloseModal, task }) => {
-  const { title } = task;
+  const { title, description } = task;
+
   return (
     <Dialog open={openModal} onClose={handleCloseModal} fullWidth={true}>
-      <DialogTitle className="modal__title">
+      <DialogTitle className="modal__title" sx={{ backgroundColor: '#091e420a' }}>
         <div className="task-modal__buttons">
           <BrandingWatermarkOutlinedIcon />
           <h4>{title}</h4>
@@ -27,16 +28,17 @@ const TaskModal: FC<IProps> = ({ openModal, handleCloseModal, task }) => {
           <CloseIcon />
         </IconButton>
       </DialogTitle>
-      <DialogContent>
-        <div className="task-modal__description">
-          <div className="task-modal__buttons">
-            <ArticleOutlinedIcon />
-            <p>Description</p>
-          </div>
-          <div className="task-modal-description__input"></div>
-        </div>
+      <DialogContent sx={{ backgroundColor: '#091e420a' }}>
+        <TaskDescription description={description} />
       </DialogContent>
-      <DialogActions sx={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
+      <DialogActions
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '20px',
+          backgroundColor: '#091e420a',
+        }}
+      >
         <Button variant="outlined" startIcon={<SaveIcon />}>
           Save
         </Button>
