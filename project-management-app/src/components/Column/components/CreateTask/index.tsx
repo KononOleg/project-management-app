@@ -1,8 +1,8 @@
 import './styles.css';
 import { FC, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { TextareaAutosize } from '@mui/material';
-import { createTask } from '../../../../../../store/thunks/TasksThunks';
+import { createTask } from '../../../../store/thunks/TasksThunks';
 
 interface IProps {
   boardId: string;

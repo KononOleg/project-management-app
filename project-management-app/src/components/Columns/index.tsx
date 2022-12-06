@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getColumns } from '../../store/thunks/BoardThunks';
 import { IColumn } from '../../types';
 import CreateColumn from './components/CreateColumn';
-import Column from './components/Column';
+import Column from '../Column';
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 import { reorder } from '../../helpers';
 import BoardService from '../../service/BoardService';

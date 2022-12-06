@@ -1,10 +1,10 @@
 import './styles.css';
 import { FC, useEffect, useState } from 'react';
-import { IColumn, ITask } from '../../../../types';
+import { IColumn, ITask } from '../../types';
 import EditColumn from './components/EditColumn';
 import CreateTask from './components/CreateTask';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
-import { getTasks } from '../../../../store/thunks/TasksThunks';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { getTasks } from '../../store/thunks/TasksThunks';
 import TasksList from './components/TasksList';
 
 interface IProps extends IColumn {

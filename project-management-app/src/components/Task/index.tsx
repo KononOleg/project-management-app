@@ -1,6 +1,6 @@
 import './styles.css';
 import { FC, useState } from 'react';
-import { ITask } from '../../../../../../../../types';
+import { ITask } from '../../types';
 import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import TaskModal from './components/TaskModal';

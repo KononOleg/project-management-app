@@ -1,12 +1,12 @@
 import './styles.css';
 import { FC } from 'react';
 import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton } from '@mui/material';
-import { ITask } from '../../../../../../../../../../types';
+import { ITask } from '../../../../types';
 import Button from '@mui/material/Button';
 import BrandingWatermarkOutlinedIcon from '@mui/icons-material/BrandingWatermarkOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import SaveIcon from '@mui/icons-material/Save';
-import TaskDescription from './components/TaskDescription';
+import TaskDescription from '../TaskDescription';
 
 interface IProps {
   openModal: boolean;

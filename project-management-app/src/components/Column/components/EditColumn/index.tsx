@@ -4,8 +4,8 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useAppDispatch } from '../../../../../../hooks/redux';
-import { deleteColumn, updateColumn } from '../../../../../../store/thunks/BoardThunks';
+import { useAppDispatch } from '../../../../hooks/redux';
+import { deleteColumn, updateColumn } from '../../../../store/thunks/BoardThunks';
 
 interface IProps {
   titleColumn: string;
