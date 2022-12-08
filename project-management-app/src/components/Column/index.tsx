@@ -6,12 +6,14 @@ import CreateTask from './components/CreateTask';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getTasks } from '../../store/thunks/TasksThunks';
 import TasksList from './components/TasksList';
+import { Draggable } from 'react-beautiful-dnd';
 
 interface IProps extends IColumn {
-  isDragging: boolean;
+  index: number;
 }
 
-const Column: FC<IProps> = ({ _id, title, boardId, order, isDragging }) => {
+const Column: FC<IProps> = ({ index, ...column }) => {
+  const { _id, title, boardId, order } = column;
   const [filteredTasks, setFilteredTasks] = useState<ITask[]>([]);
   const { tasks } = useAppSelector((state) => state.TasksSlice);
   const dispatch = useAppDispatch();
@@ -25,12 +27,23 @@ const Column: FC<IProps> = ({ _id, title, boardId, order, isDragging }) => {
   }, [tasks]);
 
   return (
-    <div className={`column__wrapper ${isDragging ? 'column__wrapper_dragging' : ''}`}>
-      <EditColumn titleColumn={title} columnId={_id} boardId={boardId} orderColumn={order} />
-      <TasksList filteredTasks={filteredTasks} />
-      <CreateTask boardId={boardId} columnId={_id} order={filteredTasks.length + 1} />
-    </div>
+    <Draggable key={_id} draggableId={_id} index={index}>
+      {(provided, snapshot) => (
+        <div
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          className={`column__wrapper ${snapshot.isDragging ? 'column__wrapper_dragging' : ''}`}
+        >
+          <EditColumn titleColumn={title} columnId={_id} boardId={boardId} orderColumn={order} />
+          <TasksList filteredTasks={filteredTasks} draggableId={_id} />
+          <CreateTask boardId={boardId} columnId={_id} order={filteredTasks.length + 1} />
+        </div>
+      )}
+    </Draggable>
   );
 };
+{
+}
 
 export default Column;

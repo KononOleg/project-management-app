@@ -5,7 +5,7 @@ import { getColumns } from '../../store/thunks/BoardThunks';
 import { IColumn } from '../../types';
 import CreateColumn from './components/CreateColumn';
 import Column from '../Column';
-import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 import { reorder } from '../../helpers';
 import BoardService from '../../service/BoardService';
 import { setColumns } from '../../store/reducers/BoardSlice';
@@ -23,40 +23,46 @@ const Columns: FC<IProps> = ({ id }) => {
   }, []);
 
   const handleDragEnd = (result: DropResult) => {
-    if (!result.destination) return;
-    const newColumns = reorder(columns, result.source.index, result.destination.index);
-    const copyNewColumns: IColumn[] = [];
-    newColumns.map((newColumn, index) => {
-      const { boardId, _id, title } = newColumn;
-      copyNewColumns.push({ ...newColumn, order: index + 1 });
-      BoardService.updateColumn(boardId, _id, title, index + 1);
-    });
-    dispatch(setColumns(copyNewColumns));
+    const { destination, source, type } = result;
+
+    if (!destination) return;
+    if (destination.droppableId === source.droppableId && destination.index === source.index)
+      return;
+
+    if (type === 'column') {
+      const newColumns = reorder(columns, source.index, destination.index);
+      const copyNewColumns: IColumn[] = [];
+      newColumns.map((newColumn, index) => {
+        const { boardId, _id, title } = newColumn;
+        copyNewColumns.push({ ...newColumn, order: index + 1 });
+        BoardService.updateColumn(boardId, _id, title, index + 1);
+      });
+      dispatch(setColumns(copyNewColumns));
+      return;
+    }
+
+    const start = source.droppableId;
+    const finish = destination.droppableId;
+
+    //If dropped inside the same column
+    if (start === finish) {
+      return;
+    }
+
+    //If dropped in a different column
   };
 
   return (
     <div className="columns__wrapper">
       <DragDropContext onDragEnd={handleDragEnd}>
-        <Droppable droppableId="columns" direction="horizontal">
+        <Droppable droppableId="columns" direction="horizontal" type="column">
           {(provided) => (
             <div {...provided.droppableProps} ref={provided.innerRef} className="columns__list">
               {[...columns]
                 .sort((a, b) => a.order - b.order)
-                .map((column: IColumn, index: number) => {
-                  return (
-                    <Draggable key={column._id} draggableId={column._id} index={index}>
-                      {(provided, snapshot) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                        >
-                          <Column key={column._id} {...column} isDragging={snapshot.isDragging} />
-                        </div>
-                      )}
-                    </Draggable>
-                  );
-                })}
+                .map((column: IColumn, index: number) => (
+                  <Column key={column._id} {...column} index={index} />
+                ))}
               {provided.placeholder}
             </div>
           )}

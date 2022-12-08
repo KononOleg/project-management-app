@@ -6,7 +6,12 @@ import EditIcon from '@mui/icons-material/Edit';
 import TaskModal from './components/TaskModal';
 import RenameTaskModal from './components/RenameTaskModal';
 
-const Task: FC<ITask> = (task) => {
+interface IProps {
+  task: ITask;
+  isDragging: boolean;
+}
+
+const Task: FC<IProps> = ({ task, isDragging }) => {
   const { title } = task;
   const [openModal, setOpenModal] = useState(false);
   const [openRenameModal, setOpenRenameModal] = useState(false);
