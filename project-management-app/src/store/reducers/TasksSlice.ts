@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ITask } from '../../types';
-import { createTask, getTasks } from '../thunks/TasksThunks';
+import { createTask, getTasks, renameTask } from '../thunks/TasksThunks';
 
 interface TasksState {
   tasks: ITask[];
@@ -45,6 +45,21 @@ export const tasksSlice = createSlice({
     });
 
     builder.addCase(createTask.rejected.type, (state, action: PayloadAction<string>) => {
+      state.isPending = false;
+      state.error = action.payload;
+    });
+    builder.addCase(renameTask.pending.type, (state) => {
+      state.isPending = true;
+    });
+
+    builder.addCase(renameTask.fulfilled.type, (state, action: PayloadAction<ITask>) => {
+      state.isPending = false;
+      state.error = '';
+      const taskIndex = state.tasks.findIndex((task) => task._id === action.payload._id);
+      state.tasks[taskIndex].title = action.payload.title;
+    });
+
+    builder.addCase(renameTask.rejected.type, (state, action: PayloadAction<string>) => {
       state.isPending = false;
       state.error = action.payload;
     });

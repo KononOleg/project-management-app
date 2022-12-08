@@ -35,6 +35,7 @@ export default class TasksService {
     users: string[]
   ): Promise<AxiosResponse<ITask>> {
     return await $api.put<ITask>(`/boards/${boardId}/columns/${columnId}/tasks/${taskId}`, {
+      columnId,
       title,
       order,
       description,

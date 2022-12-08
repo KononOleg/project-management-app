@@ -1,0 +1,42 @@
+.rename-task-modal__modal {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.349);
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
+.rename-task-modal__wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.rename-task-modal__input {
+  padding: 8px 8px 30px 8px;
+  background: #fff;
+  outline: none;
+  border-radius: 3px;
+  width: 260px;
+  box-sizing: border-box;
+  border: 0;
+  box-shadow: 0 1px 0 #091e4240;
+  resize: none;
+  position: relative;
+}
+
+.rename-task-modal__button {
+  background-color: #0079bf;
+  color: #fff;
+  border: 0;
+  padding: 9px 16px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.rename-task-modal__button:hover {
+  background-color: #026aa7;
+}
