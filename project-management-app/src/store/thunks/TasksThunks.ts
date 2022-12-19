@@ -9,7 +9,7 @@ export const getTasks = createAsyncThunk(
   async (payload: { boardId: string; columnId: string }, thunkAPI) => {
     try {
       const response = await TasksService.getTasks(payload.boardId, payload.columnId);
-      return response.data;
+      return { columnId: payload.columnId, tasks: response.data };
     } catch (err) {
       if (axios.isAxiosError(err) && err.response) {
         const data = err.response.data as AxiosErrorDataType;

@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ITask } from '../../types';
+import { ITask, ITaskList } from '../../types';
 import { createTask, getTasks, renameTask } from '../thunks/TasksThunks';
 
 interface TasksState {
-  tasks: ITask[];
+  tasks: ITaskList[];
   isPending: boolean;
   error: string;
 }
@@ -23,10 +23,11 @@ export const tasksSlice = createSlice({
       state.isPending = true;
     });
 
-    builder.addCase(getTasks.fulfilled.type, (state, action: PayloadAction<ITask[]>) => {
+    builder.addCase(getTasks.fulfilled.type, (state, action: PayloadAction<ITaskList>) => {
       state.isPending = false;
       state.error = '';
-      state.tasks = [...state.tasks, ...action.payload];
+
+      state.tasks = [...state.tasks, action.payload];
     });
 
     builder.addCase(getTasks.rejected.type, (state, action: PayloadAction<string>) => {
@@ -41,7 +42,9 @@ export const tasksSlice = createSlice({
     builder.addCase(createTask.fulfilled.type, (state, action: PayloadAction<ITask>) => {
       state.isPending = false;
       state.error = '';
-      state.tasks = [...state.tasks, action.payload];
+      state.tasks
+        .find((task) => task.columnId === action.payload.columnId)
+        ?.tasks.push(action.payload);
     });
 
     builder.addCase(createTask.rejected.type, (state, action: PayloadAction<string>) => {
@@ -55,8 +58,14 @@ export const tasksSlice = createSlice({
     builder.addCase(renameTask.fulfilled.type, (state, action: PayloadAction<ITask>) => {
       state.isPending = false;
       state.error = '';
-      const taskIndex = state.tasks.findIndex((task) => task._id === action.payload._id);
-      state.tasks[taskIndex].title = action.payload.title;
+
+      const taskListIndex = state.tasks.findIndex(
+        (taskList) => taskList.columnId === action.payload.columnId
+      );
+      const taskIndex = state.tasks[taskListIndex].tasks.findIndex(
+        (task) => task._id === action.payload._id
+      );
+      state.tasks[taskListIndex].tasks[taskIndex].title = action.payload.title;
     });
 
     builder.addCase(renameTask.rejected.type, (state, action: PayloadAction<string>) => {

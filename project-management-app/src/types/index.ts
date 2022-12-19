@@ -33,3 +33,8 @@ export interface IColumn {
   order: number;
   boardId: string;
 }
+
+export interface ITaskList {
+  columnId: string;
+  tasks: ITask[];
+}

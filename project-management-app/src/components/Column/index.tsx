@@ -23,7 +23,7 @@ const Column: FC<IProps> = ({ index, ...column }) => {
   }, []);
 
   useEffect(() => {
-    setFilteredTasks(tasks.filter((task) => task.columnId === _id));
+    setFilteredTasks(tasks.find((task) => task.columnId === _id)?.tasks || []);
   }, [tasks]);
 
   return (

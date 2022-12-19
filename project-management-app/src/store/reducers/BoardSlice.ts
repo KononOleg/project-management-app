@@ -26,6 +26,9 @@ export const boardSlice = createSlice({
   name: 'board',
   initialState,
   reducers: {
+    resetColumns(state) {
+      state.columns = [];
+    },
     setColumns(state, action: PayloadAction<IColumn[]>) {
       state.columns = action.payload;
     },
@@ -96,4 +99,4 @@ export const boardSlice = createSlice({
 
 export default boardSlice.reducer;
 
-export const { setColumns } = boardSlice.actions;
+export const { setColumns, resetColumns } = boardSlice.actions;

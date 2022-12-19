@@ -8,7 +8,7 @@ import Column from '../Column';
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 import { reorder } from '../../helpers';
 import BoardService from '../../service/BoardService';
-import { setColumns } from '../../store/reducers/BoardSlice';
+import { resetColumns, setColumns } from '../../store/reducers/BoardSlice';
 
 interface IProps {
   id: string;
@@ -19,6 +19,7 @@ const Columns: FC<IProps> = ({ id }) => {
   const { columns } = useAppSelector((state) => state.BoardSlice);
 
   useEffect(() => {
+    dispatch(resetColumns());
     dispatch(getColumns(id as string));
   }, []);
 
