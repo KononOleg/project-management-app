@@ -11,7 +11,7 @@ interface IProps {
   isDragging: boolean;
 }
 
-const Task: FC<IProps> = ({ task, isDragging }) => {
+const Task: FC<IProps> = ({ task }) => {
   const { title } = task;
   const [openModal, setOpenModal] = useState(false);
   const [openRenameModal, setOpenRenameModal] = useState(false);

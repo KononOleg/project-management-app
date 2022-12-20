@@ -17,7 +17,13 @@ const initialState: TasksState = {
 export const tasksSlice = createSlice({
   name: 'tasks',
   initialState,
-  reducers: {},
+  reducers: {
+    setTasks(state, action: PayloadAction<ITaskList>) {
+      const columnId = action.payload.columnId;
+      const taskListIndex = state.tasks.findIndex((task) => task.columnId === columnId);
+      state.tasks[taskListIndex].tasks = action.payload.tasks;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getTasks.pending.type, (state) => {
       state.isPending = true;
@@ -76,3 +82,4 @@ export const tasksSlice = createSlice({
 });
 
 export default tasksSlice.reducer;
+export const { setTasks } = tasksSlice.actions;

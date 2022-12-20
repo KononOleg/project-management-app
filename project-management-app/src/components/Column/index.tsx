@@ -33,7 +33,8 @@ const Column: FC<IProps> = ({ index, ...column }) => {
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          className={`column__wrapper ${snapshot.isDragging ? 'column__wrapper_dragging' : ''}`}
+          /*         className={`column__wrapper ${snapshot.isDragging ? 'column__wrapper_dragging' : ''}`} */
+          className={'column__wrapper'}
         >
           <EditColumn titleColumn={title} columnId={_id} boardId={boardId} orderColumn={order} />
           <TasksList filteredTasks={filteredTasks} draggableId={_id} />

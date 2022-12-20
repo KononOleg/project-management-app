@@ -60,7 +60,6 @@ export default class TasksService {
       order,
       description,
       userId,
-      boardId,
       columnId: toColumnId,
       users,
     });
