@@ -6,6 +6,7 @@ import MainPage from '../pages/MainPage';
 import WelcomePage from '../pages/WelcomePage';
 import LoginRoute from './LoginRoute';
 import PrivateRoute from './PrivateRoute';
+import ProfilePage from '../pages/ProfilePage';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <BoardPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/profile',
+        element: (
+          <PrivateRoute>
+            <ProfilePage />
           </PrivateRoute>
         ),
       },

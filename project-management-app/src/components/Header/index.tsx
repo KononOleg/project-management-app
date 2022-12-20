@@ -96,7 +96,10 @@ const Header: FC = () => {
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
               >
                 <MenuItem>
-                  <Avatar /> Edit Profile
+                  <Avatar />
+                  <Link to="/profile" className="header__link">
+                    Edit Profile
+                  </Link>
                 </MenuItem>
                 <Divider />
                 <MenuItem onClick={() => dispatch(signOut())}>
