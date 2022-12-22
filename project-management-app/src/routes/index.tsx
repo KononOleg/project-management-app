@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
-import Authorization from '../pages/Authorization';
+import AuthorizationPage from '../pages/AuthorizationPage';
 import BoardPage from '../pages/BoardPage';
 import MainPage from '../pages/MainPage';
 import WelcomePage from '../pages/WelcomePage';
@@ -44,7 +44,7 @@ const router = createBrowserRouter([
         path: '/signup',
         element: (
           <LoginRoute>
-            <Authorization isSignUp={true} />
+            <AuthorizationPage isSignUp={true} />
           </LoginRoute>
         ),
       },
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
         path: '/signin',
         element: (
           <LoginRoute>
-            <Authorization />
+            <AuthorizationPage />
           </LoginRoute>
         ),
       },

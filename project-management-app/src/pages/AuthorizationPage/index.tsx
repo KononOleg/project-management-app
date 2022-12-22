@@ -19,7 +19,7 @@ interface IProps {
   isSignUp?: boolean;
 }
 
-const Authorization: FC<IProps> = ({ isSignUp }) => {
+const AuthorizationPage: FC<IProps> = ({ isSignUp }) => {
   const {
     register,
     formState: { errors, isDirty, submitCount },
@@ -108,4 +108,4 @@ const Authorization: FC<IProps> = ({ isSignUp }) => {
   );
 };
 
-export default Authorization;
+export default AuthorizationPage;
