@@ -28,5 +28,12 @@
     "EDIT": "Edit board",
     "EDIT_APPLY": "Save",
     "TITLE_LABEL": "Title"
+  },
+  "PROFILE_EDIT": {
+    "TITLE": "Edit Profile",
+    "SUBMIT": "Edit Profile",
+    "SUCCESSFUL": "Profile edited successfully",
+    "409": "Login already exist",
+    "400": "Bad Request"
   }
 }

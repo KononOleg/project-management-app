@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import AuthService from '../../service/AuthService';
 import UserService from '../../service/UserService';
-import { AxiosErrorDataType } from '../../types/api';
+import { AxiosErrorDataType, SignUpRequest } from '../../types/api';
 import jwt_decode from 'jwt-decode';
 import { IToken } from '../../types';
 
@@ -58,3 +58,18 @@ export const checkIsAuth = createAsyncThunk('auth/isAuth', async (_, thunkAPI) =
     return thunkAPI.rejectWithValue('');
   }
 });
+
+export const updateUser = createAsyncThunk(
+  'auth/updateUser',
+  async (payload: { id: string; signUpRequest: SignUpRequest }, thunkAPI) => {
+    try {
+      const response = await UserService.updateUser(payload.id, payload.signUpRequest);
+      return response.data;
+    } catch (err) {
+      if (axios.isAxiosError(err) && err.response) {
+        const data = err.response.data as AxiosErrorDataType;
+        return thunkAPI.rejectWithValue(data.statusCode);
+      }
+    }
+  }
+);

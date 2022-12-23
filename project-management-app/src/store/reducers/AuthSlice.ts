@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IUser } from '../../types';
-import { checkIsAuth, signIn, signUp } from '../thunks/AuthThunks';
+import { checkIsAuth, signIn, signUp, updateUser } from '../thunks/AuthThunks';
 
 interface AuthState {
   user: IUser | null;
@@ -68,6 +68,19 @@ export const authSlice = createSlice({
       state.user = action.payload;
     });
     builder.addCase(checkIsAuth.rejected.type, (state, action: PayloadAction<number>) => {
+      state.isPending = false;
+      state.error = action.payload;
+    });
+    builder.addCase(updateUser.pending.type, (state) => {
+      state.error = null;
+      state.isPending = true;
+    });
+    builder.addCase(updateUser.fulfilled.type, (state, action: PayloadAction<IUser>) => {
+      state.isPending = false;
+      state.error = null;
+      state.user = action.payload;
+    });
+    builder.addCase(updateUser.rejected.type, (state, action: PayloadAction<number>) => {
       state.isPending = false;
       state.error = action.payload;
     });
