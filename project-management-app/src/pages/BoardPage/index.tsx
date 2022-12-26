@@ -6,11 +6,13 @@ import Loading from '../../components/Loading';
 import { useSnackbar } from 'notistack';
 import { getBoard } from '../../store/thunks/BoardThunks';
 import Columns from '../../components/Columns';
+import { getUsers } from '../../store/thunks/UsersThunks';
 
 const BoardPage: FC = () => {
   let { boardId } = useParams();
   const dispatch = useAppDispatch();
   const { board, error, isPending } = useAppSelector((state) => state.BoardSlice);
+
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
@@ -19,6 +21,7 @@ const BoardPage: FC = () => {
 
   useEffect(() => {
     dispatch(getBoard(boardId as string));
+    dispatch(getUsers());
   }, []);
 
   return (

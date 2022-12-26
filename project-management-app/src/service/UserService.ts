@@ -8,6 +8,10 @@ export default class UserService {
     return $api.get<IUser>(`/users/${id}`);
   }
 
+  static async getUsers(): Promise<AxiosResponse<IUser[]>> {
+    return $api.get<IUser[]>(`/users`);
+  }
+
   static async updateUser(id: string, signUpRequest: SignUpRequest): Promise<AxiosResponse<IUser>> {
     const { name, login, password } = signUpRequest;
     return $api.put<IUser>(`/users/${id}`, {

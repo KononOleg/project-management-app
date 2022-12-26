@@ -28,7 +28,6 @@ const Columns: FC<IProps> = ({ id }) => {
 
   const handleDragEnd = (result: DropResult) => {
     const { destination, source, type } = result;
-
     if (!destination) return;
     if (destination.droppableId === source.droppableId && destination.index === source.index)
       return;
