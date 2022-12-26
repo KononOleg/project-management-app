@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Navigate } from 'react-router-dom';
+import Loading from '../components/Loading';
 import { useAppSelector } from '../hooks/redux';
 
 interface IProps {
@@ -7,8 +8,8 @@ interface IProps {
 }
 
 const PrivateRoute: FC<IProps> = ({ children }) => {
-  const { isAuth } = useAppSelector((state) => state.AuthReducer);
-  return isAuth ? children : <Navigate to="/signin" />;
+  const { isAuth, isPending } = useAppSelector((state) => state.AuthReducer);
+  return <>{isPending ? <Loading /> : <> {isAuth ? children : <Navigate to="/signin" />}</>}</>;
 };
 
 export default PrivateRoute;

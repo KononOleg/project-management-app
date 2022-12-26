@@ -12,7 +12,7 @@ interface AuthState {
 const initialState: AuthState = {
   user: null,
   isPending: false,
-  isAuth: false,
+  isAuth: true,
   error: null,
 };
 

@@ -8,7 +8,6 @@ interface IProps {
 
 const LoginRoute: FC<IProps> = ({ children }) => {
   const { isAuth } = useAppSelector((state) => state.AuthReducer);
-  console.log(isAuth);
   return !isAuth ? children : <Navigate to="/" />;
 };
 
