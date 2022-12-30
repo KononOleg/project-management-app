@@ -3,7 +3,7 @@ import { FC, useState } from 'react';
 import { Portal, TextareaAutosize } from '@mui/material';
 import { ITask } from '../../../../types';
 import { useAppDispatch } from '../../../../hooks/redux';
-import { renameTask } from '../../../../store/thunks/TasksThunks';
+import { updateTask } from '../../../../store/thunks/TasksThunks';
 
 interface IProps {
   closeRenameModal: () => void;
@@ -21,7 +21,7 @@ const RenameTaskModal: FC<IProps> = ({ closeRenameModal, task }) => {
     e.stopPropagation();
     e.preventDefault();
     closeRenameModal();
-    dispatch(renameTask({ ...task, title: newTitle }));
+    dispatch(updateTask({ ...task, title: newTitle }));
   };
 
   const handlerCloseRenameModal = (e: React.MouseEvent<HTMLElement>) => {

@@ -1,0 +1,17 @@
+.add-users-task-modal__user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 3px 20px 3px 3px;
+}
+
+.add-users-task-modal__user:hover {
+  background-color: #091e420a;
+}
+
+.add-users-task-modal__left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

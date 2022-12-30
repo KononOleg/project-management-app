@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ITask, ITaskList } from '../../types';
-import { createTask, getTasks, renameTask } from '../thunks/TasksThunks';
+import { createTask, getTasks, updateTask } from '../thunks/TasksThunks';
 
 interface TasksState {
   tasks: ITaskList[];
@@ -57,24 +57,24 @@ export const tasksSlice = createSlice({
       state.isPending = false;
       state.error = action.payload;
     });
-    builder.addCase(renameTask.pending.type, (state) => {
+    builder.addCase(updateTask.pending.type, (state) => {
       state.isPending = true;
     });
 
-    builder.addCase(renameTask.fulfilled.type, (state, action: PayloadAction<ITask>) => {
+    builder.addCase(updateTask.fulfilled.type, (state, action: PayloadAction<ITask>) => {
       state.isPending = false;
       state.error = '';
 
       const taskListIndex = state.tasks.findIndex(
-        (taskList) => taskList.columnId === action.payload.columnId
+        (taskList) => taskList.columnId === action.payload.columnId ////////////////////////ИСПРАВИТЬ
       );
       const taskIndex = state.tasks[taskListIndex].tasks.findIndex(
         (task) => task._id === action.payload._id
       );
-      state.tasks[taskListIndex].tasks[taskIndex].title = action.payload.title;
+      state.tasks[taskListIndex].tasks[taskIndex] = action.payload;
     });
 
-    builder.addCase(renameTask.rejected.type, (state, action: PayloadAction<string>) => {
+    builder.addCase(updateTask.rejected.type, (state, action: PayloadAction<string>) => {
       state.isPending = false;
       state.error = action.payload;
     });

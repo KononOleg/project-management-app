@@ -7,6 +7,7 @@ import BrandingWatermarkOutlinedIcon from '@mui/icons-material/BrandingWatermark
 import CloseIcon from '@mui/icons-material/Close';
 import SaveIcon from '@mui/icons-material/Save';
 import TaskDescription from '../TaskDescription';
+import UsersTask from '../UsersTask';
 
 interface IProps {
   openModal: boolean;
@@ -29,6 +30,7 @@ const TaskModal: FC<IProps> = ({ openModal, handleCloseModal, task }) => {
         </IconButton>
       </DialogTitle>
       <DialogContent sx={{ backgroundColor: '#091e420a' }}>
+        <UsersTask task={task} />
         <TaskDescription description={description} />
       </DialogContent>
       <DialogActions

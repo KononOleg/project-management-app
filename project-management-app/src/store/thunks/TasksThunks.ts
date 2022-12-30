@@ -51,7 +51,7 @@ export const createTask = createAsyncThunk(
   }
 );
 
-export const renameTask = createAsyncThunk('tasks/renameTask', async (task: ITask, thunkAPI) => {
+export const updateTask = createAsyncThunk('tasks/updateTask', async (task: ITask, thunkAPI) => {
   try {
     const { _id, title, order, boardId, columnId, description, userId, users } = task;
     const response = await TasksService.updateTask(

@@ -1,0 +1,52 @@
+.task-user-modal__wrapper {
+  min-width: 300px;
+}
+
+.task-user-modal__top {
+  background-image: linear-gradient(to bottom, #0079bf 0%, #0079bf 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 82px;
+
+  height: 100px;
+  display: flex;
+  gap: 10px;
+  padding: 24px 12px 8px 14px;
+  color: #ffffff;
+}
+
+.task-user-modal__name {
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.task-user-modal__login {
+  font-size: 12px;
+}
+
+.task-user-modal__bottom {
+  padding: 10px 0;
+}
+
+.task-user-modal__button {
+  border: 0;
+  background-color: transparent;
+
+  color: #172b4d;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  padding: 10px 0;
+  cursor: pointer;
+  width: 100%;
+  padding: 6px 12px;
+  text-align: left;
+}
+.task-user-modal__line {
+  border-top: 1px solid #091e4221;
+  margin: 6px 12px;
+}
+
+.task-user-modal__button:hover {
+  background-color: rgba(9, 30, 66, 0.04);
+}
