@@ -31,7 +31,7 @@ const TaskModal: FC<IProps> = ({ openModal, handleCloseModal, task }) => {
       </DialogTitle>
       <DialogContent sx={{ backgroundColor: '#091e420a' }}>
         <UsersTask task={task} />
-        <TaskDescription description={description} />
+        <TaskDescription description={description} task={task} />
       </DialogContent>
       <DialogActions
         sx={{
@@ -41,9 +41,6 @@ const TaskModal: FC<IProps> = ({ openModal, handleCloseModal, task }) => {
           backgroundColor: '#091e420a',
         }}
       >
-        <Button variant="outlined" startIcon={<SaveIcon />}>
-          Save
-        </Button>
         <Button variant="contained" color="error">
           Delete
         </Button>

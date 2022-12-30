@@ -1,7 +1,7 @@
 .task-modal__description {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 }
 
 .task-description__title {
@@ -15,6 +15,12 @@
 }
 .task-description__title:hover {
   background-color: #091e4214;
+}
+.task-description__title_active {
+  background-color: transparent;
+}
+.task-description__title_active:hover {
+  background-color: transparent;
 }
 
 .task-description__input {
