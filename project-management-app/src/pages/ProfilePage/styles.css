@@ -15,3 +15,15 @@
 .profile__page_title {
   text-align: center;
 }
+
+.profile-page__avatar {
+  position: relative;
+}
+.profile-page-avatar__upload {
+  position: absolute;
+  top: 75%;
+  right: 5%;
+
+  background-color: white;
+  border-radius: 100%;
+}

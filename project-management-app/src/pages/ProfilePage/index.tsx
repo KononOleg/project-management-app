@@ -8,6 +8,8 @@ import { LoadingButton } from '@mui/lab';
 import { updateUser } from '../../store/thunks/AuthThunks';
 import UserAvatar from '../../components/UserAvatar';
 import { IUser } from '../../types';
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import { IconButton } from '@mui/material';
 
 interface IFormInputs {
   name: string;
@@ -38,11 +40,31 @@ const ProfilePage: FC = () => {
     dispatch(updateUser({ id: user?._id as string, signUpRequest: data }));
   };
 
+  const uploadAvatar = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (!files || files.length === 0) return;
+
+    const reader = new FileReader();
+    reader.onloadend = function () {
+      console.log('base64', reader.result);
+    };
+    reader.readAsDataURL(files[0]);
+  };
+
   return (
     <div className="profile-page__wrapper">
       <h2 className="profile__page_title">{user?.name}</h2>
       <div className="profile-page__content">
-        <UserAvatar user={user as IUser} size={400} />
+        <div className="profile-page__avatar">
+          <UserAvatar user={user as IUser} size={400} />
+          <div className="profile-page-avatar__upload">
+            <IconButton aria-label="upload picture" component="label" size="large">
+              <input hidden accept="image/*" type="file" onChange={uploadAvatar} />
+              <AddAPhotoIcon fontSize="inherit" />
+            </IconButton>
+          </div>
+        </div>
+
         <form onSubmit={handleSubmit(onSubmit)} className="authorization__form">
           <h3 className="authorization-form__title">{t('PROFILE_EDIT.TITLE')}</h3>
 
