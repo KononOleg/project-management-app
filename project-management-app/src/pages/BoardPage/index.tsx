@@ -9,7 +9,7 @@ import Columns from '../../components/Columns';
 import { getUsers } from '../../store/thunks/UsersThunks';
 
 const BoardPage: FC = () => {
-  let { boardId } = useParams();
+  const { boardId } = useParams();
   const dispatch = useAppDispatch();
   const { board, error, isPending } = useAppSelector((state) => state.BoardSlice);
 

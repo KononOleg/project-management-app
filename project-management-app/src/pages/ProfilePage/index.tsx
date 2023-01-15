@@ -6,6 +6,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { useSnackbar } from 'notistack';
 import { LoadingButton } from '@mui/lab';
 import { updateUser } from '../../store/thunks/AuthThunks';
+import UserAvatar from '../../components/UserAvatar';
+import { IUser } from '../../types';
 
 interface IFormInputs {
   name: string;
@@ -38,9 +40,9 @@ const ProfilePage: FC = () => {
 
   return (
     <div className="profile-page__wrapper">
-      <h2>{user?.name}</h2>
+      <h2 className="profile__page_title">{user?.name}</h2>
       <div className="profile-page__content">
-        <div className="profile-page__avatar"></div>
+        <UserAvatar user={user as IUser} size={400} />
         <form onSubmit={handleSubmit(onSubmit)} className="authorization__form">
           <h3 className="authorization-form__title">{t('PROFILE_EDIT.TITLE')}</h3>
 

@@ -30,7 +30,7 @@ const TaskDescription: FC<IProps> = ({ description, task }) => {
   };
 
   const moveCaretAtEnd = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    let temp_value = e.target.value;
+    const temp_value = e.target.value;
     e.target.value = '';
     e.target.value = temp_value;
   };

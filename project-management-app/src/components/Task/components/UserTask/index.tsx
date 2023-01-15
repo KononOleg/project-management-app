@@ -2,7 +2,8 @@ import './styles.css';
 import { FC, useState } from 'react';
 import { Avatar, Popover } from '@mui/material';
 import { useAppSelector } from '../../../../hooks/redux';
-import { ITask } from '../../../../types';
+import { ITask, IUser } from '../../../../types';
+import UserAvatar from '../../../UserAvatar';
 
 interface IProps {
   userId: string;
@@ -12,6 +13,7 @@ interface IProps {
 
 const UserTask: FC<IProps> = ({ userId, deleteUserTask }) => {
   const { users } = useAppSelector((state) => state.UsersSlice);
+  const user = users.find((user) => user._id === userId);
 
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
@@ -30,10 +32,8 @@ const UserTask: FC<IProps> = ({ userId, deleteUserTask }) => {
 
   return (
     <>
-      <div onClick={handleClick}>
-        <Avatar sx={{ bgcolor: 'red', width: 50, height: 50, cursor: 'pointer' }}>
-          {users.find((user) => user._id === userId)?.name[0]}
-        </Avatar>
+      <div onClick={handleClick} className="task-user__member">
+        <UserAvatar user={user as IUser} size={50} />
       </div>
 
       <Popover
@@ -47,16 +47,10 @@ const UserTask: FC<IProps> = ({ userId, deleteUserTask }) => {
       >
         <div className="task-user-modal__wrapper">
           <div className="task-user-modal__top">
-            <Avatar sx={{ bgcolor: 'red', width: 86, height: 86 }}>
-              {users.find((user) => user._id === userId)?.name[0]}
-            </Avatar>
+            <UserAvatar user={user as IUser} size={86} />
             <div>
-              <p className="task-user-modal__name">
-                {users.find((user) => user._id === userId)?.name}
-              </p>
-              <p className="task-user-modal__login">{`@${
-                users.find((user) => user._id === userId)?.login
-              }`}</p>
+              <p className="task-user-modal__name">{user?.name}</p>
+              <p className="task-user-modal__login">{`@${user?.login}`}</p>
             </div>
           </div>
           <div className="task-user-modal__bottom">

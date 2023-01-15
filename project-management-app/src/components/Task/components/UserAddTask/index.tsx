@@ -5,6 +5,7 @@ import { updateTask } from '../../../../store/thunks/TasksThunks';
 import { Avatar } from '@mui/material';
 import { ITask, IUser } from '../../../../types';
 import CheckIcon from '@mui/icons-material/Check';
+import UserAvatar from '../../../UserAvatar';
 
 interface IProps {
   user: IUser;
@@ -30,7 +31,7 @@ const UserAddTask: FC<IProps> = ({ user, task, deleteUserTask }) => {
   return (
     <div className="add-users-task-modal__user" onClick={() => addUserTaskHandler(_id)}>
       <div className="add-users-task-modal__left">
-        <Avatar sx={{ bgcolor: 'red' }}>{name[0]}</Avatar>
+        <UserAvatar user={user as IUser} size={40} />
         <p>{`${login} (${name})`}</p>
       </div>
 

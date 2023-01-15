@@ -8,6 +8,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { authSlice } from '../../store/reducers/AuthSlice';
 import { Avatar, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip } from '@mui/material';
 import { Logout } from '@mui/icons-material';
+import UserAvatar from '../UserAvatar';
+import { IUser } from '../../types';
 
 const Header: FC = () => {
   const { t } = useTranslation();
@@ -55,9 +57,7 @@ const Header: FC = () => {
                   aria-haspopup="true"
                   aria-expanded={open ? 'true' : undefined}
                 >
-                  <Avatar sx={{ width: 32, height: 32, backgroundColor: 'red' }}>
-                    {user?.name[0]}
-                  </Avatar>
+                  <UserAvatar user={user as IUser} size={45} />
                 </IconButton>
               </Tooltip>
               <Menu

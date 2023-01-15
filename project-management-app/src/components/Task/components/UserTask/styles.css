@@ -1,6 +1,9 @@
 .task-user-modal__wrapper {
   min-width: 300px;
 }
+.task-user__member {
+  cursor: pointer;
+}
 
 .task-user-modal__top {
   background-image: linear-gradient(to bottom, #0079bf 0%, #0079bf 100%);
