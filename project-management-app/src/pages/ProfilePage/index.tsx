@@ -10,6 +10,7 @@ import UserAvatar from '../../components/UserAvatar';
 import { IUser } from '../../types';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { IconButton } from '@mui/material';
+import { updateFile } from '../../store/thunks/FilesThunks';
 
 interface IFormInputs {
   name: string;
@@ -45,8 +46,9 @@ const ProfilePage: FC = () => {
     if (!files || files.length === 0) return;
 
     const reader = new FileReader();
-    reader.onloadend = function () {
-      console.log('base64', reader.result);
+    reader.onloadend = () => {
+      dispatch(updateFile({ _id: user?._id as string, file: reader.result as string }));
+      enqueueSnackbar(t('AVATAR UPDATE'), { variant: 'success' });
     };
     reader.readAsDataURL(files[0]);
   };

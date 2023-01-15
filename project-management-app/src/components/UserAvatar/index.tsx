@@ -1,8 +1,9 @@
 import './styles.css';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Avatar } from '@mui/material';
 import { IUser } from '../../types';
 import { stringAvatar } from '../../helpers';
+import { useAppSelector } from '../../hooks/redux';
 
 interface IProps {
   user: IUser;
@@ -10,8 +11,19 @@ interface IProps {
 }
 
 const UserAvatar: FC<IProps> = ({ user, size }) => {
-  const { name } = user;
-  const userImage = '';
+  const { _id, name } = user;
+  const { files } = useAppSelector((state) => state.FilesSlice);
+
+  const getImage = () => {
+    const findUserImage = files.find((file) => file._id === _id);
+    return findUserImage ? findUserImage.file : '';
+  };
+
+  const [userImage, setUserImage] = useState(getImage());
+  useEffect(() => {
+    setUserImage(getImage());
+  }, [files]);
+
   return (
     <>
       {userImage ? (

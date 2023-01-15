@@ -4,9 +4,10 @@ import BoardSlice from './reducers/BoardSlice';
 import BoardsSlice from './reducers/BoardsSlice';
 import TasksSlice from './reducers/TasksSlice';
 import UsersSlice from './reducers/UsersSlice';
+import FilesSlice from './reducers/FilesSlice';
 
 const store = configureStore({
-  reducer: { AuthReducer, BoardsSlice, BoardSlice, TasksSlice, UsersSlice },
+  reducer: { AuthReducer, BoardsSlice, BoardSlice, TasksSlice, UsersSlice, FilesSlice },
 });
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

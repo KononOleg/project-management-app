@@ -38,3 +38,8 @@ export interface ITaskList {
   columnId: string;
   tasks: ITask[];
 }
+
+export interface IFile {
+  _id: string;
+  file: string;
+}
