@@ -11,11 +11,10 @@ interface IProps {
 }
 
 const UserAvatar: FC<IProps> = ({ user, size }) => {
-  const { _id, name } = user;
   const { files } = useAppSelector((state) => state.FilesSlice);
 
   const getImage = () => {
-    const findUserImage = files.find((file) => file._id === _id);
+    const findUserImage = files.find((file) => file._id === user._id);
     return findUserImage ? findUserImage.file : '';
   };
 
@@ -26,11 +25,12 @@ const UserAvatar: FC<IProps> = ({ user, size }) => {
 
   return (
     <>
-      {userImage ? (
-        <Avatar sx={{ width: size, height: size }} alt={name} src={userImage} />
-      ) : (
-        <Avatar {...stringAvatar(name, size)} />
-      )}
+      {user &&
+        (userImage ? (
+          <Avatar sx={{ width: size, height: size }} alt={user.name} src={userImage} />
+        ) : (
+          <Avatar {...stringAvatar(user.name, size)} />
+        ))}
     </>
   );
 };

@@ -68,6 +68,7 @@ export const authSlice = createSlice({
       state.user = action.payload;
     });
     builder.addCase(checkIsAuth.rejected.type, (state, action: PayloadAction<number>) => {
+      state.isAuth = false;
       state.isPending = false;
       state.error = action.payload;
     });
